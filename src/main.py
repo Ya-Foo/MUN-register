@@ -50,8 +50,8 @@ class Thread(QThread):
                 # Convert img into PyQT format and emit to main
                 Image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 Convert2QtFormat = QImage(Image.data, Image.shape[1], Image.shape[0], QImage.Format_RGB888)
-                pic = Convert2QtFormat.scaled(640, 480, Qt.KeepAspectRatio)
-                self.ImageUpdate.emit(pic)
+                pic = Convert2QtFormat.scaled(1280, 720, Qt.KeepAspectRatio)
+                self.ImageUpdate.emit(pic.copy())
         capture.release()
     
     def stop(self):
