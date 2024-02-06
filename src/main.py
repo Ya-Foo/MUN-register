@@ -34,10 +34,20 @@ class Thread(QThread):
     def run(self) -> None:
         self.ThreadActive = True
         detector = cv2.QRCodeDetector()
-        capture = cv2.VideoCapture()
+        capture = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+        capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+        capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
         while self.ThreadActive:
             ret, frame = capture.read()
             if ret:
+                # QR code detection and decoding
+                success, decode, pts, _ = detector.detectAndDecodeMulti(frame)
+                if success:
+                    for data, p in zip(decode, pts):
+                        if data:
+                            frame = cv2.polylines(frame, [p.astype(int)], True, (0, 255, 0), 8)
+                            
+                # Convert img into PyQT format and emit to main
                 Image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 Convert2QtFormat = QImage(Image.data, Image.shape[1], Image.shape[0], QImage.Format_RGB888)
                 pic = Convert2QtFormat.scaled(640, 480, Qt.KeepAspectRatio)
