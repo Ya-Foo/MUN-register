@@ -1,64 +1,51 @@
+# Import PyQT
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import QWidget
 
-import cv2
 import sys
+
+# Import from Python files
+from qrRead import QRThread
 
 class MainWindow(QWidget):
     def __init__(self) -> None:
         super(MainWindow, self).__init__()
         
         self.VBL = QVBoxLayout()
+        self.setWindowTitle("MUN Registration")
         
         # widget to store camera feed
         self.FeedLabel = QLabel()
         self.VBL.addWidget(self.FeedLabel)
         
-        self.Thread1 = Thread()
+        # widget to retrieve & display scanned info
+        self.InfoLabel = QLabel()
+        self.VBL.addWidget(self.InfoLabel)
+        
+        # Updating the widgets
+        self.Thread1 = QRThread()
         self.Thread1.start()
         self.Thread1.ImageUpdate.connect(self.ImageUpdateSlot)
+        self.Thread1.InfoUpdate.connect(self.TextUpdateSlot)
         
         self.setLayout(self.VBL)
+        self.showMaximized()
         
     def ImageUpdateSlot(self, Image):
         self.FeedLabel.setPixmap(QPixmap.fromImage(Image))
         
+    def TextUpdateSlot(self, Text:str):
+        self.InfoLabel.setText(Text)
+        
     def CancelFeed(self):
         self.Thread1.stop()
-        
-class Thread(QThread):
-    ImageUpdate = pyqtSignal(QImage)
-    def run(self) -> None:
-        self.ThreadActive = True
-        detector = cv2.QRCodeDetector()
-        capture = cv2.VideoCapture(1, cv2.CAP_DSHOW)
-        capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
-        capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
-        while self.ThreadActive:
-            ret, frame = capture.read()
-            if ret:
-                # QR code detection and decoding
-                success, decode, pts, _ = detector.detectAndDecodeMulti(frame)
-                if success:
-                    for data, p in zip(decode, pts):
-                        if data:
-                            frame = cv2.polylines(frame, [p.astype(int)], True, (0, 255, 0), 8)
-                            
-                # Convert img into PyQT format and emit to main
-                Image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                Convert2QtFormat = QImage(Image.data, Image.shape[1], Image.shape[0], QImage.Format_RGB888)
-                pic = Convert2QtFormat.scaled(1280, 720, Qt.KeepAspectRatio)
-                self.ImageUpdate.emit(pic.copy())
-        capture.release()
-    
-    def stop(self):
-        self.ThreadActive = False
-        self.quit()
+
         
 if __name__ == "__main__":
+    # Main app
     App = QApplication(sys.argv)
     Root = MainWindow()
     Root.show()
