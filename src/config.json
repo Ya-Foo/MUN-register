@@ -8,7 +8,7 @@
     },
     
     "attendance": {
-        "page": ["Room 1", "Room 2"],
+        "rooms": ["Room 1", "Room 2"],
         "register_column": "G",
         "identifier_column": "C",
         "start_row": 3
