@@ -1,6 +1,7 @@
 {
     "camera_id": 1,
     "sheets_id": "1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4",
+    "present_marker": "✓",
     
     "info": {
         "page": "delegatesInfo",
@@ -12,10 +13,5 @@
         "register_column": "G",
         "identifier_column": "C",
         "start_row": 3
-    },
-    
-    "markers": {
-        "present": "/",
-        "absent": "X"
     }
 }

@@ -23,8 +23,8 @@ with open("src/config.json", 'r') as f:
     attendance_start = attendance_info["start_row"]
     for room in attendance_rooms:
         cell = f"'{room}'!{attendance_lookup_col}{attendance_start}:{attendance_lookup_col}1000"
-        print(api.get_values(creds, sheets_id, cell))
+        room_members = [i[0] for i in api.get_values(creds, sheets_id, cell)]
+        for index, member in enumerate(room_members):
+            all_members[member].append(index+attendance_start)
     
-    markers = data["markers"]
-    present = markers["present"]
-    absent = markers["absent"]
+    present = data["present_marker"]
