@@ -4,11 +4,10 @@ from PyQt5.QtCore import *
 
 import cv2, json, pyautogui
 
+from settings import cam_id
+
 # Constants
 width, height = pyautogui.size()
-with open("src/config.json", 'r') as f:
-    data = json.loads(f.read())
-    cam_id = data["camera_id"]
 
 class QRThread(QThread):
     # Initialise thread's signals

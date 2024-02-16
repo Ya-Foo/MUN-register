@@ -9,6 +9,7 @@ import sys
 
 # Import from Python files
 from qrRead import QRThread
+from register import Register
 
 class MainWindow(QWidget):
     def __init__(self) -> None:
@@ -24,6 +25,16 @@ class MainWindow(QWidget):
         # widget to retrieve & display scanned info
         self.InfoLabel = QLabel()
         self.VBL.addWidget(self.InfoLabel)
+        self.InfoLabel.setText("Not detected")
+        
+        # button to register scanned attendees
+        self.RegisterBTN = QPushButton("Save and Register")
+        self.RegisterBTN.clicked.connect(self.StartRegister)
+        self.VBL.addWidget(self.RegisterBTN)
+        
+        # variables to store registered members
+        self.scanned = []
+        self.Thread2 = Register(self.scanned)
         
         # Updating the widgets
         self.Thread1 = QRThread()
@@ -37,11 +48,16 @@ class MainWindow(QWidget):
     def ImageUpdateSlot(self, Image):
         self.FeedLabel.setPixmap(QPixmap.fromImage(Image))
         
-    def TextUpdateSlot(self, Text:str):
+    def TextUpdateSlot(self, Text):
+        if Text not in self.scanned:
+            self.scanned.append(Text)
         self.InfoLabel.setText(Text)
         
     def CancelFeed(self):
         self.Thread1.stop()
+        
+    def StartRegister(self):
+        self.Thread2.start()
 
         
 if __name__ == "__main__":
