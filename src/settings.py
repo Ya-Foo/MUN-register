@@ -1,13 +1,20 @@
+# Import PyQT
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+
 import json
+import re
 
 import api
 
 with open("src/config.json", 'r') as f:
     creds = api.auth()
     data = json.loads(f.read())
-    cam_id = data["camera_id"]
-    sheets_id = data["sheets_id"]
     
+    cam_id = data["camera_id"]
+    sheets_url = data["sheets_url"]
+    sheets_id = re.findall(".*/(.*)/", sheets_url)[0]
+
     all_members_info = data["info"]
     all_members_page = all_members_info["page"]
     all_members_start = all_members_info["start_row"]
@@ -26,5 +33,5 @@ with open("src/config.json", 'r') as f:
         room_members = [i[0] for i in api.get_values(creds, sheets_id, cell)]
         for index, member in enumerate(room_members):
             all_members[member].append(index+attendance_start)
-    
+
     present = data["present_marker"]
