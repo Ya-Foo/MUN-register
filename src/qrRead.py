@@ -45,7 +45,7 @@ class QRRead(QThread):
                 # Convert img into PyQT format and emit to main
                 Image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 Convert2QtFormat = QImage(Image.data, Image.shape[1], Image.shape[0], QImage.Format_RGB888)
-                pic = Convert2QtFormat.scaled(width//5*3, height//3*2, Qt.KeepAspectRatio)
+                pic = Convert2QtFormat.scaled(width, height//3*2, Qt.KeepAspectRatio)
                 self.ImageUpdate.emit(pic.copy())
         capture.release()
     

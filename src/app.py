@@ -7,8 +7,7 @@ from PyQt5.QtCore import *
 import pyautogui, sys
 
 # Import from Python files
-from qrRead import QRRead
-from qrCreate import QRCreate
+from attendance import Attendance
 
 # Constants
 width, height = pyautogui.size()
@@ -32,62 +31,113 @@ class MainWindow(QMainWindow):
         # menu
         self.SideMenu = QFrame()
         self.SideMenu.setStyleSheet("""
-                                    .QFrame{background-color: #1d1d1d} 
-                                    .QPushButton{
-                                        text-align:left;
-                                        background-color: transparent;
-                                        font-size: 16pt;
-                                        padding-top: 45px;
-                                        padding-bottom: 45px;
-                                        padding-left: 35px;
-                                        color: #D3D3D3;
-                                    }
-                                    .QPushButton:hover{
-                                        background-color: #1976D2;
-                                    }
-                                    """)
+            .QFrame{background-color: #1d1d1d} 
+            .QPushButton{
+                text-align:left;
+                background-color: transparent;
+                font-size: 14pt;
+                padding-top: 40px;
+                padding-bottom: 40px;
+                padding-left: 35px;
+                color: #6b6b6b;
+                border-radius: 10px;
+            }
+            .QPushButton:hover{
+                background-color: #242424;
+                color: #AAAAAA;
+                
+            }
+            .QPushButton:checked{
+                background-color: #1976D2;
+                color: white;
+            }
+        """)
         self.SideMenu.setFixedWidth(width//5)
         self.MenuLayout = QVBoxLayout()
-        self.MenuLayout.setSpacing(0)
+        self.MenuLayout.setSpacing(20)
         self.MenuLayout.setAlignment(Qt.AlignTop)
-        self.MenuLayout.setContentsMargins(0, 0, 0, 0)
+        self.MenuLayout.setContentsMargins(20, 20, 20, 20)
         
         # buttons in menu
-        self.AttendanceBTN = QPushButton("Attendance")
-        self.SessionBTN = QPushButton("Session Management")
-        self.TaskBTN = QPushButton("Tasks Management")
-        self.SettingsBTN = QPushButton("Settings")
+        self.AttendanceBTN = QPushButton(" Attendance")
+        self.AttendanceBTN.setAutoExclusive(True)
+        self.AttendanceBTN.setCheckable(True)
+        self.AttendanceBTN.setIcon(QIcon('./icons/checked-user.ico'))
+        self.AttendanceBTN.setIconSize(QSize(48, 48))
+        self.AttendanceBTN.setChecked(1)
+        self.AttendanceBTN.clicked.connect(self.AttendanceActivate)
+        
+        self.ChairingBTN = QPushButton(" Chairing")
+        self.ChairingBTN.setAutoExclusive(True)
+        self.ChairingBTN.setCheckable(True)
+        self.ChairingBTN.setIcon(QIcon('./icons/gavel.ico'))
+        self.ChairingBTN.setIconSize(QSize(48, 48))
+        self.ChairingBTN.clicked.connect(self.ChairingActivate)
+        
+        self.ManagementBTN = QPushButton(" Management")
+        self.ManagementBTN.setAutoExclusive(True)
+        self.ManagementBTN.setCheckable(True)
+        self.ManagementBTN.setIcon(QIcon('./icons/edit.ico'))
+        self.ManagementBTN.setIconSize(QSize(48, 48))
+        self.ManagementBTN.clicked.connect(self.ManagingActivate)
+        
+        self.SettingsBTN = QPushButton(" Settings")
+        self.SettingsBTN.setAutoExclusive(True)
+        self.SettingsBTN.setCheckable(True)
+        self.SettingsBTN.setIcon(QIcon('./icons/gear.ico'))
+        self.SettingsBTN.setIconSize(QSize(48, 48))
+        self.SettingsBTN.clicked.connect(self.SettingsActivate)
         
         # add buttons to menu
         self.MenuLayout.addWidget(self.AttendanceBTN)
-        self.MenuLayout.addWidget(self.SessionBTN)
-        self.MenuLayout.addWidget(self.TaskBTN)
+        self.MenuLayout.addWidget(self.ChairingBTN)
+        self.MenuLayout.addWidget(self.ManagementBTN)
         self.MenuLayout.addWidget(self.SettingsBTN)
         self.SideMenu.setLayout(self.MenuLayout)
         
         # area for main contents
-        self.MainContent = QFrame()
-        self.MainContent.setStyleSheet(".QFrame{background-color: #121212}")
-        self.MainContentLayout = QGridLayout()
-        self.MainContentLayout.setSpacing(0)
-        self.MainContentLayout.setContentsMargins(0, 0, 0, 0)
-        self.MainContent.setLayout(self.MainContentLayout)
+        self.MainContent = QStackedWidget()
+        
+        # add 4 tabs: Attendance, Settings, Management, Chairing
+        self.Attendance = Attendance()
+        self.Managing = QWidget()
+        self.Chairing = QWidget()
+        self.Settings = QWidget()
+        self.MainContent.addWidget(self.Attendance)
+        self.MainContent.addWidget(self.Chairing)
+        self.MainContent.addWidget(self.Managing)
+        self.MainContent.addWidget(self.Settings)
         
         # adding all to main application
         self.Grid.addWidget(self.SideMenu, 0, 0)
         self.Grid.addWidget(self.MainContent, 0, 1)
         
-        
-        
         self.setCentralWidget(self.CentralWidget)
         
         self.showMaximized()
+    
+    def AttendanceActivate(self):
+        self.MainContent.setCurrentIndex(0)
+        
+    def ChairingActivate(self):
+        self.MainContent.setCurrentIndex(1)
+
+    def ManagingActivate(self):
+        self.MainContent.setCurrentIndex(2)
+
+    def SettingsActivate(self):
+        self.MainContent.setCurrentIndex(3)
+
         
 if __name__ == "__main__":
-    App = QApplication(sys.argv + ['-platform', 'windows:darkmode=1'])
+    App = QApplication(sys.argv)
+    
+    # Dark theme
+    palette = QPalette()
+    palette.setColor(QPalette.Window, QColor(18, 18, 18))
+    palette.setColor(QPalette.WindowText, QColor(255, 255, 255, 153))
+    App.setPalette(palette)
+    
     Root = MainWindow()
     Root.show()
     App.exec()
-    
-# Notes:
-# 4 main pages: Attendance, Settings, Task Completion, Session
