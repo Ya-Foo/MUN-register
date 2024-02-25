@@ -1,4 +1,3 @@
-# https://www.youtube.com/watch?v=7DXxQV47jOU
 # Import PyQT
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -62,7 +61,10 @@ class MainWindow(QMainWindow):
         self.AttendanceBTN = QPushButton(" Attendance")
         self.AttendanceBTN.setAutoExclusive(True)
         self.AttendanceBTN.setCheckable(True)
-        self.AttendanceBTN.setIcon(QIcon('./icons/checked-user.ico'))
+        self.AttendanceICO = QIcon()
+        self.AttendanceICO.addPixmap(QPixmap('./icons/checked-user-selected.ico'), QIcon.Normal, QIcon.On)
+        self.AttendanceICO.addPixmap(QPixmap('./icons/checked-user.ico'), QIcon.Normal, QIcon.Off)
+        self.AttendanceBTN.setIcon(self.AttendanceICO)
         self.AttendanceBTN.setIconSize(QSize(48, 48))
         self.AttendanceBTN.setChecked(1)
         self.AttendanceBTN.clicked.connect(self.AttendanceActivate)
@@ -70,21 +72,30 @@ class MainWindow(QMainWindow):
         self.ChairingBTN = QPushButton(" Chairing")
         self.ChairingBTN.setAutoExclusive(True)
         self.ChairingBTN.setCheckable(True)
-        self.ChairingBTN.setIcon(QIcon('./icons/gavel.ico'))
+        self.ChairingICO = QIcon()
+        self.ChairingICO.addPixmap(QPixmap('./icons/gavel-selected.ico'), QIcon.Normal, QIcon.On)
+        self.ChairingICO.addPixmap(QPixmap('./icons/gavel.ico'), QIcon.Normal, QIcon.Off)
+        self.ChairingBTN.setIcon(self.ChairingICO)
         self.ChairingBTN.setIconSize(QSize(48, 48))
         self.ChairingBTN.clicked.connect(self.ChairingActivate)
         
         self.ManagementBTN = QPushButton(" Management")
         self.ManagementBTN.setAutoExclusive(True)
         self.ManagementBTN.setCheckable(True)
-        self.ManagementBTN.setIcon(QIcon('./icons/edit.ico'))
+        self.ManagementICO = QIcon()
+        self.ManagementICO.addPixmap(QPixmap('./icons/edit-selected.ico'), QIcon.Normal, QIcon.On)
+        self.ManagementICO.addPixmap(QPixmap('./icons/edit.ico'), QIcon.Normal, QIcon.Off)
+        self.ManagementBTN.setIcon(self.ManagementICO)
         self.ManagementBTN.setIconSize(QSize(48, 48))
         self.ManagementBTN.clicked.connect(self.ManagingActivate)
         
         self.SettingsBTN = QPushButton(" Settings")
         self.SettingsBTN.setAutoExclusive(True)
         self.SettingsBTN.setCheckable(True)
-        self.SettingsBTN.setIcon(QIcon('./icons/gear.ico'))
+        self.SettingsICO = QIcon()
+        self.SettingsICO.addPixmap(QPixmap('./icons/gear-selected.ico'), QIcon.Normal, QIcon.On)
+        self.SettingsICO.addPixmap(QPixmap('./icons/gear.ico'), QIcon.Normal, QIcon.Off)
+        self.SettingsBTN.setIcon(self.SettingsICO)
         self.SettingsBTN.setIconSize(QSize(48, 48))
         self.SettingsBTN.clicked.connect(self.SettingsActivate)
         

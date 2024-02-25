@@ -1,4 +1,4 @@
-from PyQt5.QtCore import Qt
+# Import PyQT
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
@@ -49,7 +49,7 @@ class QRRead(QThread):
                 self.ImageUpdate.emit(pic.copy())
         capture.release()
     
-    def stop(self):
+    def stop(self) -> None:
         self.ThreadActive = False
         self.quit()
 
