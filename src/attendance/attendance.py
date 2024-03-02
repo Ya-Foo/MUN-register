@@ -5,7 +5,7 @@ from PyQt5.QtCore import *
 
 import pyautogui
 
-from qrRead import QRRead
+from attendance.qrRead import QRRead
 
 # Constants
 width, height = pyautogui.size()

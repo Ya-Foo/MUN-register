@@ -4,7 +4,7 @@ from PyQt5.QtCore import *
 
 import cv2, pyautogui
 
-from settings import *
+from settings.settings import *
 import api
 
 # Constants
@@ -65,6 +65,6 @@ class Register(QThread):
         lookup_cell = f"'{room}'!{attendance_lookup_col}{row}"
         lookup_identifier = api.get_values(creds, sheets_id, lookup_cell)
         # validation if scanned QR is actual member
-        if self.identifier == lookup_identifier[0][0]:
+        if self.identifier == lookup_identifier[0][0].rstrip():
             api.write_values(creds, sheets_id, cell, 'USER_ENTERED', present)
         self.quit()

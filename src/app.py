@@ -6,7 +6,8 @@ from PyQt5.QtCore import *
 import pyautogui, sys
 
 # Import from Python files
-from attendance import Attendance
+from attendance.attendance import Attendance
+from chairing.chairing import Chairing
 
 # Constants
 width, height = pyautogui.size()
@@ -112,7 +113,7 @@ class MainWindow(QMainWindow):
         # add 4 tabs: Attendance, Settings, Management, Chairing
         self.Attendance = Attendance()
         self.Managing = QWidget()
-        self.Chairing = QWidget()
+        self.Chairing = Chairing()
         self.Settings = QWidget()
         self.MainContent.addWidget(self.Attendance)
         self.MainContent.addWidget(self.Chairing)

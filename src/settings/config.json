@@ -1,0 +1,21 @@
+{
+    "camera_id": 1,
+    "sheets_url": "https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=0",
+    "present_marker": "/",
+    
+    "info": {
+        "page": "delegatesInfo",
+        "start_row": 1
+    },
+    
+    "session": {
+        "rooms": ["Room 1", "Room 2"],
+        "identifier_column": "C",
+        "country_column": "B",
+        "register_column": "K",
+        "speech_column": "H",
+        "amendment_column": "I",
+        "poi_column": "J",
+        "start_row": 3
+    }
+}
