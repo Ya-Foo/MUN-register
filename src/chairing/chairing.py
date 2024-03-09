@@ -6,7 +6,7 @@ from PyQt5.QtCore import *
 import pyautogui
 
 from settings.settings import *
-from chairing.record import RecordWidget
+from chairing.speech import RecordWidget
 from chairing.timer import TimerWidget
 from chairing.vote import VoteWidget
 

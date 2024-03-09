@@ -39,12 +39,6 @@ class RecordWidget(QWidget):
             .QPushButton:hover {
                 background-color: #172A41;
             }
-            
-            .QFrame {
-                background-color: rgba(255, 255, 255, 0.3);
-                border: 2px solid white;
-                border-radius: 10px;
-            }
         """)
         
         # create each room class
@@ -74,14 +68,6 @@ class RecordWidget(QWidget):
         self.SubmitBTN = QPushButton("Submit")
         self.SubmitBTN.clicked.connect(self.Submit)
         
-        # status update
-        self.StatusBox = QFrame()
-        self.StatusBoxLayout = QVBoxLayout()
-        self.Status = QLabel("Please fill in all of the info.")
-        self.Status.setStyleSheet("font: white; font-size: 10pt;")
-        self.StatusBoxLayout.addWidget(self.Status)
-        self.Status.setLayout(self.StatusBoxLayout)
-        
         # add everything to layout
         self.VBL.addWidget(self.room_label)
         self.VBL.addWidget(self.room_select)
@@ -89,7 +75,6 @@ class RecordWidget(QWidget):
         self.VBL.addWidget(self.country_select)
         self.VBL.addWidget(self.speech_label)
         self.VBL.addWidget(self.speech_select)
-        self.VBL.addWidget(self.Status)
         self.VBL.addWidget(self.SubmitBTN)
         self.setLayout(self.VBL)
         self.show()
@@ -100,22 +85,12 @@ class RecordWidget(QWidget):
         self.speech = self.speech_select.currentText()
         self.submissionThread = self.SelectedRoom[self.room]
         self.submissionThread.run(self.country, self.speech)
-        self.submissionThread.ProgressUpdate.connect(self.DisplayProgress)
         
     def ChangeRoom(self):
         self.country_select.clear()
         self.country_select.addItems(self.SelectedRoom[self.room_select.currentIndex()].country_list)
-        
-    def DisplayProgress(self, done: bool):
-        if done:
-            self.Status.setStyleSheet("""background-color: green;""")
-        else:
-            self.Status.setStyleSheet("""background-color: red;""")
 
-class RecordEngagement(QThread):
-    # Initialise thread's progress signal
-    ProgressUpdate = pyqtSignal(bool)
-    
+class RecordEngagement(QThread):    
     def __init__(self, room: str) -> None:
         super(RecordEngagement, self).__init__()
         self.room = room
@@ -141,7 +116,6 @@ class RecordEngagement(QThread):
                 self.write_content = self.current[0][0] + present
                 
             api.write_values(creds, sheets_id, self.write_cell, 'USER_ENTERED', self.write_content)
-            self.ProgressUpdate.emit(1)
             self.quit()
         except:
-            self.ProgressUpdate.emit(0)
+            pass
