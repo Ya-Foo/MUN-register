@@ -51,18 +51,19 @@ class RecordWidget(QWidget):
         self.room_select.addItems(attendance_rooms)
         self.room_select.currentTextChanged.connect(self.ChangeRoom)
         
-        # country combo box
-        self.country_select = QComboBox()
-        self.country_select.setEditable(True)
-        
         # speech type combo box
         self.speech_select = QComboBox()
         self.speech_select.addItems(["Speech", "Amendment", "POI"])
         
+        # country combo box
+        self.country_select = QComboBox()
+        self.country_select.addItems(self.SelectedRoom[self.room_select.currentIndex()].country_list)
+        self.country_select.setEditable(True)
+        
         # labels for combo boxes
         self.room_label = QLabel("--ROOM--")
-        self.country_label = QLabel("--COUNTRY--")
         self.speech_label = QLabel("--SPEECH TYPE--")
+        self.country_label = QLabel("--COUNTRY--")
         
         # submit button
         self.SubmitBTN = QPushButton("Submit")
@@ -71,10 +72,10 @@ class RecordWidget(QWidget):
         # add everything to layout
         self.VBL.addWidget(self.room_label)
         self.VBL.addWidget(self.room_select)
-        self.VBL.addWidget(self.country_label)
-        self.VBL.addWidget(self.country_select)
         self.VBL.addWidget(self.speech_label)
         self.VBL.addWidget(self.speech_select)
+        self.VBL.addWidget(self.country_label)
+        self.VBL.addWidget(self.country_select)
         self.VBL.addWidget(self.SubmitBTN)
         self.setLayout(self.VBL)
         self.show()
