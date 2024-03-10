@@ -18,6 +18,7 @@ class MainWindow(QMainWindow):
         
         self.setGeometry(0, 0, width, height)
         self.setWindowTitle("MUN App")
+        self.setWindowIcon(QIcon("./icons/logo/black.png"))
         
         # setting up grid to put display
         self.Grid = QGridLayout()
