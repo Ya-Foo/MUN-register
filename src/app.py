@@ -56,8 +56,12 @@ class MainWindow(QMainWindow):
         self.SideMenu.setFixedWidth(width//5)
         self.MenuLayout = QVBoxLayout()
         self.MenuLayout.setSpacing(20)
-        self.MenuLayout.setAlignment(Qt.AlignTop)
         self.MenuLayout.setContentsMargins(20, 20, 20, 20)
+        
+        # btn frame
+        self.BTNFrame = QFrame()
+        self.BTNFrameLayout = QVBoxLayout()
+        self.BTNFrameLayout.setAlignment(Qt.AlignTop)
         
         # buttons in menu
         self.AttendanceBTN = QPushButton(" Attendance")
@@ -102,10 +106,26 @@ class MainWindow(QMainWindow):
         self.SettingsBTN.clicked.connect(self.SettingsActivate)
         
         # add buttons to menu
-        self.MenuLayout.addWidget(self.AttendanceBTN)
-        self.MenuLayout.addWidget(self.ChairingBTN)
-        self.MenuLayout.addWidget(self.ManagementBTN)
-        self.MenuLayout.addWidget(self.SettingsBTN)
+        self.BTNFrameLayout.addWidget(self.AttendanceBTN)
+        self.BTNFrameLayout.addWidget(self.ChairingBTN)
+        self.BTNFrameLayout.addWidget(self.ManagementBTN)
+        self.BTNFrameLayout.addWidget(self.SettingsBTN)
+        self.BTNFrame.setLayout(self.BTNFrameLayout)
+        
+        # Copyright frame
+        self.copyrightFrame = QFrame()
+        self.copyrightFrame.setStyleSheet(".QLabel{font: 8pt; color: rgba(255, 255, 255, 0.25)}")
+        self.copyrightFrameLayout = QFormLayout()
+        self.logoLabel = QLabel()
+        self.logoLabel.setPixmap(QPixmap("./icons/logo/white.png").scaledToWidth(96))
+        self.copyrightFrameLayout.addRow(self.logoLabel, QLabel("MIT License\n\nCopyright (c) 2024 Gia Phu Huynh"))
+        self.copyrightFrameLayout.setFormAlignment(Qt.AlignBottom)
+        self.copyrightFrameLayout.setHorizontalSpacing(25)
+        self.copyrightFrame.setLayout(self.copyrightFrameLayout)
+        
+        # Add everything to side menu
+        self.MenuLayout.addWidget(self.BTNFrame)
+        self.MenuLayout.addWidget(self.copyrightFrame)
         self.SideMenu.setLayout(self.MenuLayout)
         
         # area for main contents

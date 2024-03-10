@@ -100,23 +100,20 @@ class RecordEngagement(QThread):
         self.country_list = [i[0] for i in api.get_values(creds, sheets_id, self.country_cells)]
         
     def run(self, country: str, speechType: str) -> None:
-        try:
-            match speechType:
-                case "Speech":
-                    self.write_col = speech_col
-                case "Amendment":
-                    self.write_col = amendment_col
-                case "POI":
-                    self.write_col = poi_col
-            self.write_cell = f"'{self.room}'!{self.write_col}{self.country_list.index(country)+attendance_start}"
+        match speechType:
+            case "Speech":
+                self.write_col = speech_col
+            case "Amendment":
+                self.write_col = amendment_col
+            case "POI":
+                self.write_col = poi_col
+        self.write_cell = f"'{self.room}'!{self.write_col}{self.country_list.index(country)+attendance_start}"
+        
+        # check if box empty: if yes, just add; otherwise concatenate another '/'
+        self.current = api.get_values(creds, sheets_id, self.write_cell)
+        self.write_content = present
+        if len(self.current) > 0:
+            self.write_content = self.current[0][0] + present
             
-            # check if box empty: if yes, just add; otherwise concatenate another '/'
-            self.current = api.get_values(creds, sheets_id, self.write_cell)
-            self.write_content = present
-            if len(self.current) > 0:
-                self.write_content = self.current[0][0] + present
-                
-            api.write_values(creds, sheets_id, self.write_cell, 'USER_ENTERED', self.write_content)
-            self.quit()
-        except:
-            pass
+        api.write_values(creds, sheets_id, self.write_cell, 'USER_ENTERED', self.write_content)
+        self.quit()
