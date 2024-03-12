@@ -9,6 +9,8 @@ class TimerWidget(QWidget):
         
         self.HBL = QHBoxLayout()
         
+        #https://www.youtube.com/watch?v=E7lhFwcDpMI
+        
         # set the timer
         self.TimerHourSet = QDoubleSpinBox()
         self.TimerHourSet.setDecimals(0)
@@ -33,7 +35,6 @@ class TimerWidget(QWidget):
         self.HBL.addWidget(self.StopBTN)
         self.HBL.addWidget(self.ResetBTN)
         self.setLayout(self.HBL)
-        self.show()
 
 
 class Timer(QThread):

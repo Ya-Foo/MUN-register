@@ -78,7 +78,6 @@ class RecordWidget(QWidget):
         self.VBL.addWidget(self.country_select)
         self.VBL.addWidget(self.SubmitBTN)
         self.setLayout(self.VBL)
-        self.show()
         
     def Submit(self):
         self.room = self.room_select.currentIndex()
@@ -90,6 +89,7 @@ class RecordWidget(QWidget):
     def ChangeRoom(self):
         self.country_select.clear()
         self.country_select.addItems(self.SelectedRoom[self.room_select.currentIndex()].country_list)
+
 
 class RecordEngagement(QThread):    
     def __init__(self, room: str) -> None:
