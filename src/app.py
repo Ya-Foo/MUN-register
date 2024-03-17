@@ -46,7 +46,6 @@ class MainWindow(QMainWindow):
             .QPushButton:hover{
                 background-color: #242424;
                 color: #AAAAAA;
-                
             }
             .QPushButton:checked{
                 background-color: #1976D2;
@@ -55,7 +54,6 @@ class MainWindow(QMainWindow):
         """)
         self.SideMenu.setFixedWidth(width//5)
         self.MenuLayout = QVBoxLayout()
-        self.MenuLayout.setSpacing(20)
         self.MenuLayout.setContentsMargins(20, 20, 20, 20)
         
         # btn frame
@@ -117,7 +115,7 @@ class MainWindow(QMainWindow):
         self.copyrightFrame.setStyleSheet(".QLabel{font: 8pt; color: rgba(255, 255, 255, 0.25)}")
         self.copyrightFrameLayout = QFormLayout()
         self.logoLabel = QLabel()
-        self.logoLabel.setPixmap(QPixmap("./icons/logo/white.png").scaledToWidth(96))
+        self.logoLabel.setPixmap(QPixmap("./icons/logo/white.png").scaledToWidth(width//25))
         self.copyrightFrameLayout.addRow(self.logoLabel, QLabel("MIT License\n\nCopyright (c) 2024 Gia Phu Huynh"))
         self.copyrightFrameLayout.setFormAlignment(Qt.AlignBottom)
         self.copyrightFrameLayout.setHorizontalSpacing(25)
@@ -174,3 +172,6 @@ if __name__ == "__main__":
     Root = MainWindow()
     Root.show()
     App.exec()
+    
+    order = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    print(order)

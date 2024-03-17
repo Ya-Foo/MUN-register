@@ -3,43 +3,62 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
+import pyautogui
+
 from settings.settings import *
 import api
+
+# Constants
+width, height = pyautogui.size()
 
 class RecordWidget(QWidget):
     def __init__(self) -> None:
         super(RecordWidget, self).__init__()
         
         self.VBL = QVBoxLayout()
-        self.VBL.setAlignment(Qt.AlignTop)
         self.setStyleSheet("""
             .QComboBox {
-                border: 1px solid transparent;
-                border-radius: 10px;
-                background: #272727;
+                border: 3px solid transparent;
+                border-bottom-width: 3px;
+                border-bottom-style: solid;
+                border-bottom-color: white;
+                background: transparent;
                 color: #6b6b6b;
                 padding-top: 10px;
                 padding-bottom: 10px;
                 padding-left: 10px;
-                font-size: 10pt;
+                font-size: 12pt;
             }
             .QComboBox::drop-down {
-                border: 1px solid;
-                border-top-right-radius: 10px;
-                border-bottom-right-radius: 10px;
-                background: #222222;
-                padding-right: 5px;
-                padding-left: 5px;
+                border: 1px solid transparent;
+                background: transparent;
+            }
+            .QComboBox::down-arrow{
+                image: url(./icons/arrow-down.ico);
+                width: 18px;
+                height: 18px;
+            }
+            .QLabel {
+                font-size: 12pt;
+                color: white;
+                padding-top: 35px;
             }
         
             .QPushButton {
-                background-color: #3A668B;
-                font: black;
+                background-color: #1976D2;
+                color: white;
+                font-size: 12pt;
+                border-radius: 10px;
+                padding: 20px 0;
             }
             .QPushButton:hover {
-                background-color: #172A41;
+                background-color: #242424;
+                color: #AAAAAA;
             }
         """)
+        self.setFixedSize(int(width*0.4), height//2)
+        self.setContentsMargins(10, 10, 25, 10)
+        self.VBL.setAlignment(Qt.AlignTop)
         
         # create each room class
         self.SelectedRoom = []
@@ -61,9 +80,9 @@ class RecordWidget(QWidget):
         self.country_select.setEditable(True)
         
         # labels for combo boxes
-        self.room_label = QLabel("--ROOM--")
-        self.speech_label = QLabel("--SPEECH TYPE--")
-        self.country_label = QLabel("--COUNTRY--")
+        self.room_label = QLabel("Room")
+        self.speech_label = QLabel("Speech")
+        self.country_label = QLabel("Country")
         
         # submit button
         self.SubmitBTN = QPushButton("Submit")

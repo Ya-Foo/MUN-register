@@ -3,15 +3,9 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-import pyautogui
-
-from settings.settings import *
 from chairing.speech import RecordWidget
 from chairing.timer import TimerWidget
 from chairing.vote import VoteWidget
-
-# Constants
-width, height = pyautogui.size()
 
 class Chairing(QWidget):
     def __init__(self) -> None:
