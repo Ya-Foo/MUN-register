@@ -131,8 +131,8 @@ class VoteWidget(QWidget):
         self.ResultLabel = QLabel("Awaiting votes...")
         self.ResultLabel.setStyleSheet("""
             background: rgba(255, 255, 255, 0.4);
-            border: 2px solid white;
-            border-radius: 10px;
+            border: 1px solid transparent;
+            border-radius: 15px;
             margin: 0px 20px;
             padding: 120px 0px;
             font: 14pt;
@@ -200,8 +200,8 @@ class VoteWidget(QWidget):
             if self.ResultLabel.text() == "PASSED":
                 self.ResultLabel.setStyleSheet("""
                     background: rgba(0, 255, 0, 0.1);
-                    border: 2px solid green;
-                    border-radius: 10px;
+                    border: 1px solid transparent;
+                    border-radius: 15px;
                     margin: 0px 20px;
                     padding: 120px 0px;
                     font: 14pt;
@@ -210,8 +210,8 @@ class VoteWidget(QWidget):
             else:
                 self.ResultLabel.setStyleSheet("""
                     background: rgba(255, 0, 0, 0.1);
-                    border: 2px solid red;
-                    border-radius: 10px;
+                    border: 1px solid transparent;
+                    border-radius: 15px;
                     margin: 0px 20px;
                     padding: 120px 0px;
                     font: 14pt;
