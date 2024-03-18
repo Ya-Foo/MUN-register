@@ -23,6 +23,10 @@ class Attendance(QWidget):
         self.BottomFrame = QFrame()
         self.BottomFrameGrid = QGridLayout()
         
+        # top frame for cam and wojaks
+        self.TopFrame = QFrame()
+        self.TopFrameLayout = QStackedLayout()
+        
         # Labels to display scanned info
         self.IdentifierHeading = QLabel("Identifier")
         self.IdentifierHeading.setStyleSheet("font-size: 18pt")
@@ -42,7 +46,13 @@ class Attendance(QWidget):
         
         # label to store camera feed
         self.FeedLabel = QLabel("CAMERA LOADING...")
-        self.FeedLabel.setFixedHeight(height//3*2)
+        self.FeedLabel.setFixedSize(width//5*4, height//3*2)
+        
+        # label for wojaks
+        self.Wojaks = QLabel()
+        self.WojakGeometry = self.FeedLabel.size()
+        self.Wojaks.setPixmap(QPixmap("./icons/sacred_wojaks.png").scaled(self.WojakGeometry))
+        self.Wojaks.setFixedSize(self.WojakGeometry)
         
         # thread for registration
         self.Thread1 = QRRead()
@@ -51,11 +61,17 @@ class Attendance(QWidget):
         self.Thread1.InfoUpdate.connect(self.IdentifierUpdateSlot)
         self.Thread1.NameUpdate.connect(self.NameUpdateSlot)
         
-        # add everything to the grid
-        self.VBL.addWidget(self.FeedLabel)
-        self.VBL.addWidget(self.BottomFrame)
+        # add stuff to top frame
+        self.TopFrameLayout.addWidget(self.FeedLabel)
+        self.TopFrameLayout.addWidget(self.Wojaks)
+        self.TopFrameLayout.setStackingMode(QStackedLayout.StackAll)
+        self.TopFrame.setLayout(self.TopFrameLayout)
         
+        # add everything to the grid
+        self.VBL.addWidget(self.TopFrame)
+        self.VBL.addWidget(self.BottomFrame)
         self.setLayout(self.VBL)
+        
         self.show()
         
     def ImageUpdateSlot(self, Image):
