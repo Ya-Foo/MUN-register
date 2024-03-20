@@ -18,31 +18,48 @@ class Attendance(QWidget):
         self.VBL.setSpacing(0)
         self.VBL.setContentsMargins(10,10,10,10)
         self.VBL.setAlignment(Qt.AlignHCenter)
+        self.setStyleSheet(".QLabel{font: 18pt;}")
         
         # bottom frame to store labels
         self.BottomFrame = QFrame()
-        self.BottomFrameGrid = QGridLayout()
+        self.BottomFrameLayout = QHBoxLayout()
         
         # top frame for cam and wojaks
         self.TopFrame = QFrame()
         self.TopFrameLayout = QStackedLayout()
         
-        # Labels to display scanned info
-        self.IdentifierHeading = QLabel("Identifier")
-        self.IdentifierHeading.setStyleSheet("font-size: 18pt")
-        self.IdentifierLabel = QLabel("Not detected")
-        self.IdentifierLabel.setStyleSheet("font-size: 18pt;")
-        self.NameHeading = QLabel("Name")
-        self.NameHeading.setStyleSheet("font-size: 18pt")
-        self.NameLabel = QLabel("Not detected")
-        self.NameLabel.setStyleSheet("font-size: 18pt;")
+        # identifer and name frames
+        self.InfoFrameStyle = ".QFrame{border: 5px solid #3f5a88; border-radius:40px; margin: 25px;}"
+        self.IdentifierFrame = QFrame()
+        self.IdentifierFrame.setStyleSheet(self.InfoFrameStyle)
+        self.IdentifierFrameLayout = QVBoxLayout()
+        self.NameFrame = QFrame()
+        self.NameFrame.setStyleSheet(self.InfoFrameStyle)
+        self.NameFrameLayout = QVBoxLayout()
         
-        # put display scanned info labels into bottom frame
-        self.BottomFrameGrid.addWidget(self.IdentifierHeading, 0, 0)
-        self.BottomFrameGrid.addWidget(self.IdentifierLabel, 1, 0)
-        self.BottomFrameGrid.addWidget(self.NameHeading, 0, 1)
-        self.BottomFrameGrid.addWidget(self.NameLabel, 1, 1)
-        self.BottomFrame.setLayout(self.BottomFrameGrid)
+        # Labels to display scanned info
+        self.IdentifierHeading = QLabel("IDENTIFIER")
+        self.IdentifierHeading.setAlignment(Qt.AlignCenter)
+        self.IdentifierLabel = QLabel("Not detected")
+        self.IdentifierLabel.setAlignment(Qt.AlignCenter)
+        self.NameHeading = QLabel("NAME")
+        self.NameHeading.setAlignment(Qt.AlignCenter)
+        self.NameLabel = QLabel("Not detected")
+        self.NameLabel.setAlignment(Qt.AlignCenter)
+        
+        # add labels into identifier and name frame
+        self.IdentifierFrameLayout.addWidget(self.IdentifierHeading)
+        self.IdentifierFrameLayout.addWidget(self.IdentifierLabel)
+        self.IdentifierFrame.setLayout(self.IdentifierFrameLayout)
+        
+        self.NameFrameLayout.addWidget(self.NameHeading)
+        self.NameFrameLayout.addWidget(self.NameLabel)
+        self.NameFrame.setLayout(self.NameFrameLayout)
+        
+        # put display scanned info frames into bottom frame
+        self.BottomFrameLayout.addWidget(self.IdentifierFrame)
+        self.BottomFrameLayout.addWidget(self.NameFrame)
+        self.BottomFrame.setLayout(self.BottomFrameLayout)
         
         # label to store camera feed
         self.FeedLabel = QLabel("CAMERA LOADING...")
@@ -66,6 +83,7 @@ class Attendance(QWidget):
         self.TopFrameLayout.addWidget(self.Wojaks)
         self.TopFrameLayout.setStackingMode(QStackedLayout.StackAll)
         self.TopFrame.setLayout(self.TopFrameLayout)
+        self.TopFrame.setFixedHeight(height//3*2)
         
         # add everything to the grid
         self.VBL.addWidget(self.TopFrame)
