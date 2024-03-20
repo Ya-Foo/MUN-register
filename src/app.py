@@ -19,6 +19,41 @@ class MainWindow(QMainWindow):
         self.setGeometry(0, 0, width, height)
         self.setWindowTitle("MUN App")
         self.setWindowIcon(QIcon("./icons/logo/black.png"))
+        self.setStyleSheet("""
+            .QComboBox {
+                border: 3px solid transparent;
+                border-bottom-width: 3px;
+                border-bottom-style: solid;
+                border-bottom-color: white;
+                background: transparent;
+                color: #6b6b6b;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                padding-left: 10px;
+                font-size: 12pt;
+            }
+            .QComboBox::drop-down {
+                border: 1px solid transparent;
+                background: transparent;
+            }
+            .QComboBox::down-arrow{
+                image: url(./icons/arrow-down.ico);
+                width: 18px;
+                height: 18px;
+            }
+            
+            .QPushButton {
+                background-color: #1976D2;
+                color: white;
+                font-size: 12pt;
+                border-radius: 10px;
+                padding: 20px 0;
+            }
+            .QPushButton:hover {
+                background-color: #242424;
+                color: #AAAAAA;
+            }
+        """)
         
         # setting up grid to put display
         self.Grid = QGridLayout()
