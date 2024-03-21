@@ -42,7 +42,7 @@ class MainWindow(QMainWindow):
         
         self.setGeometry(0, 0, width, height)
         self.setWindowTitle("MUN App")
-        self.setWindowIcon(QIcon("./icons/logo/black.png"))
+        self.setWindowIcon(QIcon("./images/logo/black.png"))
         self.setStyleSheet("""
             .QComboBox {
                 border: 3px solid transparent;
@@ -61,7 +61,7 @@ class MainWindow(QMainWindow):
                 background: transparent;
             }
             .QComboBox::down-arrow{
-                image: url(./icons/arrow-down.ico);
+                image: url(./images/icons/arrow-down.ico);
                 width: 18px;
                 height: 18px;
             }
@@ -125,8 +125,8 @@ class MainWindow(QMainWindow):
         self.AttendanceBTN.setAutoExclusive(True)
         self.AttendanceBTN.setCheckable(True)
         self.AttendanceICO = QIcon()
-        self.AttendanceICO.addPixmap(QPixmap('./icons/checked-user-selected.ico'), QIcon.Normal, QIcon.On)
-        self.AttendanceICO.addPixmap(QPixmap('./icons/checked-user.ico'), QIcon.Normal, QIcon.Off)
+        self.AttendanceICO.addPixmap(QPixmap('./images/icons/checked-user-selected.ico'), QIcon.Normal, QIcon.On)
+        self.AttendanceICO.addPixmap(QPixmap('./images/icons/checked-user.ico'), QIcon.Normal, QIcon.Off)
         self.AttendanceBTN.setIcon(self.AttendanceICO)
         self.AttendanceBTN.setIconSize(QSize(48, 48))
         self.AttendanceBTN.setChecked(1)
@@ -136,8 +136,8 @@ class MainWindow(QMainWindow):
         self.ChairingBTN.setAutoExclusive(True)
         self.ChairingBTN.setCheckable(True)
         self.ChairingICO = QIcon()
-        self.ChairingICO.addPixmap(QPixmap('./icons/gavel-selected.ico'), QIcon.Normal, QIcon.On)
-        self.ChairingICO.addPixmap(QPixmap('./icons/gavel.ico'), QIcon.Normal, QIcon.Off)
+        self.ChairingICO.addPixmap(QPixmap('./images/icons/gavel-selected.ico'), QIcon.Normal, QIcon.On)
+        self.ChairingICO.addPixmap(QPixmap('./images/icons/gavel.ico'), QIcon.Normal, QIcon.Off)
         self.ChairingBTN.setIcon(self.ChairingICO)
         self.ChairingBTN.setIconSize(QSize(48, 48))
         self.ChairingBTN.clicked.connect(self.ChairingActivate)
@@ -146,8 +146,8 @@ class MainWindow(QMainWindow):
         self.ManagementBTN.setAutoExclusive(True)
         self.ManagementBTN.setCheckable(True)
         self.ManagementICO = QIcon()
-        self.ManagementICO.addPixmap(QPixmap('./icons/edit-selected.ico'), QIcon.Normal, QIcon.On)
-        self.ManagementICO.addPixmap(QPixmap('./icons/edit.ico'), QIcon.Normal, QIcon.Off)
+        self.ManagementICO.addPixmap(QPixmap('./images/icons/edit-selected.ico'), QIcon.Normal, QIcon.On)
+        self.ManagementICO.addPixmap(QPixmap('./images/icons/edit.ico'), QIcon.Normal, QIcon.Off)
         self.ManagementBTN.setIcon(self.ManagementICO)
         self.ManagementBTN.setIconSize(QSize(48, 48))
         self.ManagementBTN.clicked.connect(self.ManagingActivate)
@@ -156,8 +156,8 @@ class MainWindow(QMainWindow):
         self.SettingsBTN.setAutoExclusive(True)
         self.SettingsBTN.setCheckable(True)
         self.SettingsICO = QIcon()
-        self.SettingsICO.addPixmap(QPixmap('./icons/gear-selected.ico'), QIcon.Normal, QIcon.On)
-        self.SettingsICO.addPixmap(QPixmap('./icons/gear.ico'), QIcon.Normal, QIcon.Off)
+        self.SettingsICO.addPixmap(QPixmap('./images/icons/gear-selected.ico'), QIcon.Normal, QIcon.On)
+        self.SettingsICO.addPixmap(QPixmap('./images/icons/gear.ico'), QIcon.Normal, QIcon.Off)
         self.SettingsBTN.setIcon(self.SettingsICO)
         self.SettingsBTN.setIconSize(QSize(48, 48))
         self.SettingsBTN.clicked.connect(self.SettingsActivate)
@@ -174,7 +174,7 @@ class MainWindow(QMainWindow):
         self.copyrightFrame.setStyleSheet(".QLabel{font: 8pt; color: rgba(255, 255, 255, 0.25)}")
         self.copyrightFrameLayout = QFormLayout()
         self.logoLabel = QLabel()
-        self.logoLabel.setPixmap(QPixmap("./icons/logo/white.png").scaledToWidth(width//25))
+        self.logoLabel.setPixmap(QPixmap("./images/logo/white.png").scaledToWidth(width//25))
         self.copyrightFrameLayout.addRow(self.logoLabel, QLabel("MIT License. Copyright (c) 2024\n\nGia Phu Huynh and Quang Hien Bui"))
         self.copyrightFrameLayout.setFormAlignment(Qt.AlignBottom)
         self.copyrightFrameLayout.setHorizontalSpacing(25)
