@@ -28,33 +28,37 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
 # Import utility widgets
-from chairing.speech import RecordWidget
-from chairing.timer import TimerWidget
-from chairing.vote import VoteWidget
+from management.qrCreate import QRCreateWidget
+from management.homework import HomeworkWidget
+from management.wiki import WikiWidget
 
-class Chairing(QWidget):
+class Managing(QWidget):
     def __init__(self) -> None:
-        super(Chairing, self).__init__()
+        super(Managing, self).__init__()
         
-        self.VBL = QVBoxLayout()
+        self.HBL = QHBoxLayout()
         
-        # top frame (speech and vote)
-        self.TopFrame = QFrame()
-        self.TopFrameLayout = QHBoxLayout()
+        # left frame (qr create and research)
+        self.LeftFrame = QFrame()
+        self.LeftFrameLayout = QVBoxLayout()
         
-        # top frame split
-        self.TopRightFrame = VoteWidget()
-        self.TopLeftFrame = RecordWidget()
+        # left frame split
+        self.LeftTopFrame = HomeworkWidget()
+        self.LeftBottomFrame = QRCreateWidget()
         
-        # add two subframe (top-left, top-right) into the top frame
-        self.TopFrameLayout.addWidget(self.TopLeftFrame)
-        self.TopFrameLayout.addWidget(self.TopRightFrame)
-        self.TopFrame.setLayout(self.TopFrameLayout)
+        # add two subframes (left-top, left-bottom) into left frame
+        self.LeftFrameLayout.addWidget(self.LeftTopFrame)
+        self.LeftFrameLayout.addWidget(self.LeftBottomFrame)
+        self.LeftFrame.setLayout(self.LeftFrameLayout)
         
-        # bottom frame (timer)
-        self.BottomFrame = TimerWidget()
+        # right frame (wikipedia)
+        self.RightFrame = WikiWidget()
+        self.RightFrameLayout = QVBoxLayout()
         
-        # add the two frames inside main VBL
-        self.VBL.addWidget(self.TopFrame)
-        self.VBL.addWidget(self.BottomFrame)
-        self.setLayout(self.VBL)
+        # add stuff into right frame
+        self.RightFrame.setLayout(self.RightFrameLayout)
+        
+        # add two frames inside main HBL
+        self.HBL.addWidget(self.LeftFrame)
+        self.HBL.addWidget(self.RightFrame)
+        self.setLayout(self.HBL)

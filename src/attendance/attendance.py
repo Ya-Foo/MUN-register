@@ -29,6 +29,7 @@ from PyQt5.QtCore import *
 
 import pyautogui
 
+# Import utility widgets
 from attendance.qrRead import QRRead
 
 # Constants

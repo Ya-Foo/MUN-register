@@ -24,12 +24,17 @@ SOFTWARE.
 
 # Import PyQT
 from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
 from segno import make_qr
 
 # Import from Python files
-from settings import all_members
+from settings.settings import all_members
+
+class QRCreateWidget(QWidget):
+    def __init__(self) -> None:
+        super(QRCreateWidget, self).__init__()
 
 class QRCreate(QThread):
     def run(self) -> None:
