@@ -25,6 +25,6 @@
         "name_column": "A",
         "research_column": "B",
         "speech_column": "C",
-        "status": ["/", "unwritten", "late", "/ but unsubmitted", "excused"]
+        "status": ["/", "unwritten", "late", "/ but unsubmitted", "excused", "notified"]
     }
 }
