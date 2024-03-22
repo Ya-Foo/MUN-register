@@ -215,7 +215,7 @@ class VoteWidget(QWidget):
                 else:
                     self.ResultLabel.setText("NOT PASSED")
             else:
-                if for_c >= math.floor(total / 3 * 2):
+                if for_c > math.floor(total / 3 * 2):
                     self.ResultLabel.setText("PASSED")
                 else:
                     self.ResultLabel.setText("NOT PASSED")
