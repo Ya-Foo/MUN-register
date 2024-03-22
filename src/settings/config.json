@@ -21,7 +21,8 @@
 
     "management": {
         "sheet": "Task Completion",
-        "identifier_column": "A",
+        "start_row": 2,
+        "name_column": "A",
         "research_column": "B",
         "speech_column": "C",
         "status": ["/", "unwritten", "late", "/ but unsubmitted", "excused"]

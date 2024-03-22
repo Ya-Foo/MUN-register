@@ -27,10 +27,11 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
+# other libraries
 from segno import make_qr
 import pyautogui
 
-# Import from Python files
+# Import settings
 from settings.settings import all_members
 
 # Constants
@@ -48,7 +49,7 @@ class QRCreateWidget(QWidget):
                 padding-top: 35px;
             }
         """)
-        self.setFixedSize(int(width*0.4), height//2)
+        self.setFixedWidth(int(width*0.4))
         self.setContentsMargins(10, 10, 25, 10)
         self.VBL.setAlignment(Qt.AlignBottom)
         

@@ -57,10 +57,17 @@ with open("src/settings/config.json", 'r') as f:
         room_members = [i[0] for i in api.get_values(creds, sheets_id, cell)]
         for index, member in enumerate(room_members):
             all_members[member.rstrip()].append(index+attendance_start)
-            
     country_col = session_info["country_column"]
     amendment_col = session_info["amendment_column"]
     speech_col = session_info["speech_column"]
     poi_col = session_info["poi_column"]
+    
+    management_info = data["management"]
+    management_page = management_info["sheet"]
+    management_start_row = management_info["start_row"]
+    management_name_col = management_info["name_column"]
+    management_research_col = management_info["research_column"]
+    management_speech_col = management_info["speech_column"]
+    management_status = management_info["status"]
 
     present = data["present_marker"]
