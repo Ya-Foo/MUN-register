@@ -28,17 +28,86 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
 from segno import make_qr
+import pyautogui
 
 # Import from Python files
 from settings.settings import all_members
 
+# Constants
+width, height = pyautogui.size()
+
 class QRCreateWidget(QWidget):
     def __init__(self) -> None:
         super(QRCreateWidget, self).__init__()
+        
+        self.VBL = QVBoxLayout()
+        self.setStyleSheet("""
+            .QLabel {
+                font-size: 12pt;
+                color: white;
+                padding-top: 35px;
+            }
+        """)
+        self.setFixedSize(int(width*0.4), height//2)
+        self.setContentsMargins(10, 10, 25, 10)
+        self.VBL.setAlignment(Qt.AlignBottom)
+        
+        # import all identifiers and names
+        self.identifiers = all_members.keys()
+        self.names = [value[0] for value in all_members.values()]
+        
+        # identifier combo box
+        self.identifier_select = QComboBox()
+        self.identifier_select.addItem("ALL")
+        self.identifier_select.addItems(self.identifiers)
+        self.identifier_select.setEditable(True)
+        self.identifier_select.currentIndexChanged.connect(self.SyncOption)
+        
+        # name combo box
+        self.name_select = QComboBox()
+        self.name_select.addItem("ALL")
+        self.name_select.addItems(self.names)
+        self.name_select.setEditable(True)
+        self.name_select.currentIndexChanged.connect(self.SyncOption)
+        
+        # labels for combo boxes
+        self.identifier_label = QLabel("Identifier")
+        self.name_label = QLabel("Name")
+        
+        # submit button
+        self.SubmitBTN = QPushButton("Submit")
+        self.SubmitBTN.clicked.connect(self.Submit)
+        
+        # thread to create QR codes
+        self.Thread1 = QRCreate()
+        self.selectionIndex = 0
+        
+        # add everything to layout
+        self.VBL.addWidget(self.identifier_label)
+        self.VBL.addWidget(self.identifier_select)
+        self.VBL.addWidget(self.name_label)
+        self.VBL.addWidget(self.name_select)
+        self.VBL.addWidget(self.SubmitBTN)
+        self.setLayout(self.VBL)
+        
+    def SyncOption(self):
+        if self.identifier_select.currentIndex() != self.selectionIndex:
+            self.selectionIndex = self.identifier_select.currentIndex()
+            self.name_select.setCurrentIndex(self.selectionIndex)
+        else:
+            self.selectionIndex = self.name_select.currentIndex()
+            self.identifier_select.setCurrentIndex(self.selectionIndex)
+            
+    def Submit(self):
+        self.Thread1.run(self.selectionIndex)
 
 class QRCreate(QThread):
-    def run(self) -> None:
-        for identifier, data in all_members.items():
-            img = make_qr(identifier)
-            img.save(f'qrcodes/{data[0]}.png',scale=10,border=1)
+    def run(self, option) -> None:
+        if option == 0:
+            for identifier, data in all_members.items():
+                img = make_qr(identifier)
+                img.save(f'./qrcodes/{data[0]}.png',scale=10,border=1)
+        else:
+            img = make_qr([_ for _ in all_members.keys()][option+1])
+            img.save(f'./qrcodes/{[_ for _ in all_members.values()][option-1][0]}.png',scale=10,border=1)
         self.quit()
