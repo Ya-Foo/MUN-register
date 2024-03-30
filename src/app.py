@@ -33,6 +33,7 @@ import pyautogui, sys
 from attendance.attendance import Attendance
 from chairing.chairing import Chairing
 from management.managing import Managing
+from settings.settings import Settings
 
 # Constants
 width, height = pyautogui.size()
@@ -193,7 +194,7 @@ class MainWindow(QMainWindow):
         self.Attendance = Attendance()
         self.Managing = Managing()
         self.Chairing = Chairing()
-        self.Settings = QWidget()
+        self.Settings = Settings()
         self.MainContent.addWidget(self.Attendance)
         self.MainContent.addWidget(self.Chairing)
         self.MainContent.addWidget(self.Managing)

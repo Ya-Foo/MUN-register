@@ -24,6 +24,7 @@ SOFTWARE.
 
 # Import PyQT
 from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
 import json
@@ -71,3 +72,35 @@ with open("src/settings/config.json", 'r') as f:
     management_status = management_info["status"]
 
     present = data["present_marker"]
+    
+class Settings(QWidget):
+    def __init__(self) -> None:
+        super(Settings, self).__init__()
+        
+        self.VBL = QVBoxLayout()
+        
+        # content frame
+        self.ContentFrame = QFrame()
+        self.ContentFrameLayout = QHBoxLayout()
+        self.ContentFrameLayout.setSpacing(0)
+        
+        # split into two sides
+        self.LeftFrame = QFrame()
+        self.LeftFrame.setStyleSheet(".QFrame{border: 2px solid transparent; border-right: 2px solid white;}")
+        self.LeftFrameLayout = QVBoxLayout()
+        self.RightFrame = QFrame()
+        self.RightFrame.setStyleSheet(".QFrame{border: 2px solid transparent; border-left: 2px solid white;}")
+        self.RightFrameLayout = QVBoxLayout()
+        
+        # add the two sides
+        self.ContentFrameLayout.addWidget(self.LeftFrame)
+        self.ContentFrameLayout.addWidget(self.RightFrame)
+        self.ContentFrame.setLayout(self.ContentFrameLayout)
+        
+        # save button
+        self.SaveBTN = QPushButton("Save and close")
+        
+        # add everything to main
+        self.VBL.addWidget(self.ContentFrame)
+        self.VBL.addWidget(self.SaveBTN)
+        self.setLayout(self.VBL)
