@@ -34,6 +34,7 @@ from attendance.attendance import Attendance
 from chairing.chairing import Chairing
 from management.managing import Managing
 from settings.settings import Settings
+from end import ExitWindow
 
 # Constants
 width, height = pyautogui.size()
@@ -222,17 +223,19 @@ class MainWindow(QMainWindow):
 
         
 if __name__ == "__main__":
-    App = QApplication(sys.argv)
-    
     # Dark theme
     palette = QPalette()
     palette.setColor(QPalette.Window, QColor(18, 18, 18))
     palette.setColor(QPalette.WindowText, QColor(255, 255, 255, 153))
-    App.setPalette(palette)
     
+    App = QApplication(sys.argv)
+    App.setPalette(palette)
     Root = MainWindow()
     Root.show()
     App.exec()
     
-    order = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    print(order)
+    endApp = QApplication(sys.argv)
+    endApp.setPalette(palette)
+    endRoot = ExitWindow()
+    endRoot.show()
+    sys.exit(endApp.exec())
