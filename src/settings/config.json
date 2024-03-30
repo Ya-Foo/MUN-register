@@ -12,10 +12,10 @@
         "rooms": ["Room 1", "Room 2"],
         "identifier_column": "C",
         "country_column": "B",
-        "register_column": "W",
-        "speech_column": "X",
-        "amendment_column": "Y",
-        "poi_column": "Z",
+        "register_column": "AA",
+        "speech_column": "AB",
+        "amendment_column": "AC",
+        "poi_column": "AD",
         "start_row": 3
     },
 
