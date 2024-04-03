@@ -2,29 +2,36 @@
     "camera_id": 0,
     "sheets_url": "https://docs.google.com/spreadsheets/d/12xkv5od2IHv1z2J6dBsjV5dFW2xkC6eVoAmiAKVsgwY/edit#gid=0",
     "present_marker": "/",
-    
     "info": {
         "page": "delegatesInfo",
         "start_row": 1
     },
-    
     "session": {
-        "rooms": ["Room 1", "Room 2"],
+        "rooms": [
+            "Room 1",
+            "Room 2"
+        ],
         "identifier_column": "C",
         "country_column": "B",
-        "register_column": "AA",
-        "speech_column": "AB",
-        "amendment_column": "AC",
-        "poi_column": "AD",
+        "register_column": "AE",
+        "speech_column": "AF",
+        "amendment_column": "AG",
+        "poi_column": "AH",
         "start_row": 3
     },
-
     "management": {
         "sheet": "Task Completion",
         "start_row": 2,
         "name_column": "A",
         "research_column": "B",
         "speech_column": "C",
-        "status": ["/", "unwritten", "late", "/ but unsubmitted", "excused", "notified"]
+        "status": [
+            "/",
+            "unwritten",
+            "late",
+            "/ but unsubmitted",
+            "excused",
+            "notified"
+        ]
     }
 }
