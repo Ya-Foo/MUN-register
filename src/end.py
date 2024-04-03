@@ -27,7 +27,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-import sys, json
+import json
 
 from PyQt5.QtWidgets import QWidget
 
@@ -52,12 +52,13 @@ class ExitWindow(QWidget):
                 color: white;
             }
         """)
+        self.VBL.setAlignment(Qt.AlignCenter)
         
         self.message = QLabel("Would you like to end this session?")
         self.message.setStyleSheet("font:14pt;")
         self.instruction = QLabel("Yes: next session's settings will be created.\n\n"
                                   "No: this session's settings will be kept.")
-        self.instruction.setStyleSheet("font:8pt;margin: 0px 20px;")
+        self.instruction.setStyleSheet("font:10pt;margin: 0px 20px;")
         
         # frame for btn
         self.BTNFrame = QFrame()
