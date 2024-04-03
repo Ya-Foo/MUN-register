@@ -115,7 +115,7 @@ def increaseCol(x: str) -> str:
     for char in x:
         num *= base
         num += order.index(char) + 1
-    num += 1
+    num += 4
     
     # convert back to letters
     while num != 0:

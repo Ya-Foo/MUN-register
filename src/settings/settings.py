@@ -98,9 +98,13 @@ class Settings(QWidget):
         self.ContentFrame.setLayout(self.ContentFrameLayout)
         
         # save button
-        self.SaveBTN = QPushButton("Save and close")
+        self.SaveBTN = QPushButton("Save")
+        self.SaveBTN.clicked.connect(self.save)
         
         # add everything to main
         self.VBL.addWidget(self.ContentFrame)
         self.VBL.addWidget(self.SaveBTN)
         self.setLayout(self.VBL)
+        
+    def save(self):
+        pass
