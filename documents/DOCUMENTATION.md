@@ -6,11 +6,12 @@
 - [Installation and setup](#installation-and-setup)
   - [The main App](#the-main-app)
   - [Google API](#google-api)
-- [Architecture and mechanisms](#architecture-and-mechanisms)
+- [App architecture and mechanisms](#app-architecture-and-mechanisms)
   - [Threading theory](#threading-theory)
     - [Main thread](#main-thread)
     - [Worker thread](#worker-thread)
   - [Threading implementation](#threading-implementation)
+- [App GUI](#app-gui)
 - [Code organisation](#code-organisation)
 
 ## Contributing
@@ -71,7 +72,7 @@ Alternatively, you can create your own credentials using the guidelines from Goo
 > [!CAUTION]
 > DO NOT share these files to anyone, nor put it on a public repository as it will cause security risks to your account.
 
-## Architecture and mechanisms
+## App architecture and mechanisms
 
 ### Threading theory
 
@@ -153,6 +154,21 @@ See diagram below to visualise this:
     ```
 
 There are many more things you can do with Threads, just visit the [PyQt5 documentation](https://doc.qt.io/qtforpython-5/) to find out more.
+
+## App GUI
+
+Gia Phu and Henry have already designed the GUI so follow their designs [here](https://docs.google.com/presentation/d/1qY5cqMBw-6FbdSAbfHJeYvB0jWfJhM9Rk-8UDwVV-hQ/edit#slide=id.g2c20d570521_0_10). If you do not have access, change to @bisvietnam.com account.
+
+To grasp the basics of creating GUI with PyQt5, please have a read through [this](https://www.pythonguis.com/tutorials/pyqt-basic-widgets/) and [this](https://www.pythonguis.com/tutorials/pyqt-layouts/), in that order. In a short summary, the process of adding GUI elements includes:
+
+1. Create a layout
+2. Define a widget
+3. Customise the widget
+4. Add that widget to the layout
+5. Set and finalise layout
+6. Show the widget / main thread
+
+For any web-devs out there, this is very similar to HTML and CSS, where the Main application is the `<body>` and the widgets are `<div>` elements; both can be customised with a language similar to CSS.
 
 ## Code organisation
 
