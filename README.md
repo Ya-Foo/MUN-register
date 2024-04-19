@@ -8,9 +8,9 @@ All the libraries used is included in the [requirements.txt](requirements.txt).
 
 ## Information
 
-For developers working on this program, refer to this [documentation](DOCUMENTATION.md).
+For developers working on this program, refer to this [documentation](documents/DOCUMENTATION.md)
 
-For chairs wishing to install this app, refer to this [user guide](USERGUIDE.md).
+For chairs wishing to install this app, refer to this [user guide](documents/USERGUIDE.md).
 
 ## Credits
 
@@ -20,7 +20,7 @@ A program made for the BISHCMC MUN club.
 
 Idea proposal: Henry Bui  
 Head developer: Gia Phu Huynh  
-Contributors: see [here](CONTRIBUTORS.md)
+Contributors: see [here](documents/CONTRIBUTORS.md)
 
 > [!WARNING]
 > Any miscredit will result in the termination of this program. Please see the MIT License to see the proper way to credit the authors of this program.
