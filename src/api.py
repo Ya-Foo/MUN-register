@@ -64,7 +64,6 @@ def write_values(creds, spreadsheet_id, range_name, value_input_option, value):
             )
             .execute()
         )
-        return result
     
     except HttpError as error:
         print(f"An error occurred: {error}")

@@ -122,5 +122,6 @@ def increaseCol(x: str) -> str:
     while num != 0:
         new_x.insert(0, order[num%base-1])
         num //= base
+    new_col = "".join(new_x)
     
-    return "".join(new_x)
+    return new_col

@@ -13,6 +13,9 @@
   - [Threading implementation](#threading-implementation)
 - [App GUI](#app-gui)
 - [Code organisation](#code-organisation)
+  - [api.py](#apipy)
+  - [app.py](#apppy)
+  - [end.py](#endpy)
 
 ## Contributing
 
@@ -172,7 +175,7 @@ For any web-devs out there, this is very similar to HTML and CSS, where the Main
 
 ## Code organisation
 
-```txt
+```text
 src
 |   api.py
 |   app.py
@@ -202,3 +205,87 @@ src
         settings.py
         __init__.py
 ```
+
+### api.py
+
+Contain code for creating tokens for API operations such as creating a token, read and write to Google Sheets. Visit Google's [documentation](https://developers.google.com/sheets/api/guides/concepts) for a more detailed view and to familiarise yourself with the terminologies.
+
+`auth()`  
+Return a credential from token for end-user to access the Google Sheets. If there is no token, it will create a token file based on the user's API credentials.
+> Parameters:
+>
+> - None
+>
+> Returns:
+>
+> - cred : Any  
+> The credential is used to authorize read and write operations from the app.
+
+`get_values(creds, spreadsheet_id, range_name)`  
+Return data obtained from the specified Google Sheets range.
+> Parameters:
+>
+> - creds : Any  
+> Credential token obtained from `auth()`.
+>  
+> - spreadsheet_id : str  
+> The unique ID of a spreadsheet one wants to access.
+>  
+> - range_name : str  
+> A Google Sheet range to get data from.
+>
+> Returns:
+>
+> - rows : a [ValueRange](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values#resource-valuerange) object
+> - error : HttpError
+
+`write_values(creds, spreadsheet_id, range_name, value_input_option, value)`  
+Write data to a single range.
+> Parameters:
+>
+> - creds : Any  
+> Credential token obtained from `auth()`.
+>  
+> - spreadsheet_id : str  
+> The unique ID of a spreadsheet one wants to access.
+>  
+> - range_name : str  
+> A Google Sheet range to get data from.
+>  
+> - value_input_option : str  
+> How the input data should be interpreted. See [here](https://developers.google.com/sheets/api/reference/rest/v4/ValueInputOption) for options.
+>  
+> - value : str  
+> The value that will be entered into the cells.
+>
+> Returns:
+>
+> - error : HttpError
+
+### app.py
+
+Where the Main thread is coded and run.
+
+### end.py
+
+Code for the exit window of the program.
+
+`ExitWindow`  
+A QWidget class/object that will allow the user to end the session and update information for next week if needed be.
+
+`yes(self)`  
+A procedure which updates config.json upon exiting the program.
+
+`increaseCol(x)`  
+A function which returns the new column for next session.
+
+> Parameters:
+>
+> - x : str  
+> A string that represents the current column for data entry.
+>  
+> Returns:
+>
+> - new_col : str  
+> A string that represents the column for data entry for next session.
+
