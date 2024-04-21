@@ -18,8 +18,8 @@ A program made for the BISHCMC MUN club.
 
 ![insert school mun logo]()
 
-Idea proposal: Henry Bui  
-Head developer: Gia Phu Huynh  
+Idea proposal: Henry Bui @Heinz-Bui  
+Head developer: Gia Phu Huynh @Ya-Foo or @Ya-Hoo  
 Contributors: see [here](documents/CONTRIBUTORS.md)
 
 > [!WARNING]
