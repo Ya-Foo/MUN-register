@@ -14,9 +14,9 @@ For chairs wishing to install this app, refer to this [user guide](documents/USE
 
 ## Credits
 
-A program made for the BISHCMC MUN club.
-
 ![BISMUN lock-up logo](documents/img/logo.png)
+
+A program made for the BISHCMC MUN club.
 
 Idea proposal: Henry Bui @Heinz-Bui  
 Head developer: Gia Phu Huynh @Ya-Foo or @Ya-Hoo  

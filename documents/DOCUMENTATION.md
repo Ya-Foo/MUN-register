@@ -17,20 +17,33 @@
   - [api.py](#apipy)
   - [app.py](#apppy)
   - [end.py](#endpy)
+  - [attendance.py](#attendancepy)
+  - [qrRead.py](#qrreadpy)
+  - [chairing.py](#chairingpy)
+  - [speech.py](#speechpy)
+  - [timer.py (not done)](#timerpy-not-done)
+  - [vote.py](#votepy)
+  - [managing.py](#managingpy)
+  - [homework.py](#homeworkpy)
+  - [qrCreate.py](#qrcreatepy)
+  - [wiki.py (not done)](#wikipy-not-done)
+  - [settings.py (not done/in progress)](#settingspy-not-donein-progress)
+  - [config.json](#configjson)
 
 ## Contributing
 
 1. Ensure you have Python installed.
-2. Fork this repo.
-3. Make a clone of the forked repo on your local machine.
-4. In that clone, make changes, run tests, etc.
-5. Push changes to your fork.
-6. Issue a pull request and wait for me to review it.
-7. If all goes well, I will merge your pull requests.
-8. Please make sure your branch is always up-to-date with the main branch.
+2. Create a GitHub account if not already done so.
+3. Fork this repo.
+4. Make a clone of the forked repo on your local machine.
+5. In that clone, make changes, run tests, etc.
+6. Push changes to your fork.
+7. Issue a pull request and wait for me to review it.
+8. If all goes well, I will merge your pull requests.
+9. Please make sure your branch is always up-to-date with the main branch.
 
 > [!NOTE]
-> If this is your first time contributing to this project, please add your name to the [CONTRIBUTION.md](CONTRIBUTORS.md) file along with the date when you first joined. This is so that you guys all get acknowledged for your hard work.
+> If this is your first time contributing to this project, please add your name to the [CONTRIBUTION.md](CONTRIBUTORS.md) file along with the date when you first joined and your GitHub username. This is so that you guys all get acknowledged for your hard work.
 
 ## Installation and setup
 
@@ -150,8 +163,9 @@ See diagram below to visualise this:
 
         [...]
 
-        def Slot1(self):
+        def Slot1(self, received_value):
             # Main thread's response to signal
+            # received_value is the same datatype as the signal.
     ```
 
 4. Ending a worker thread
@@ -218,7 +232,7 @@ src
 
 ### api.py
 
-Contain code for creating tokens for API operations such as creating a token, read and write to Google Sheets. Visit Google's [documentation](https://developers.google.com/sheets/api/guides/concepts) for a more detailed view and to familiarise yourself with the terminologies.
+Contain code for creating tokens for API operations such as creating a token, read and write to Google Sheets. Visit Google's [documentation](https://developers.google.com/sheets/api/guides/concepts) for a more detailed view and to familiarise yourself with the terminologies. Every read/write operations will be done on a worker thread because they usually take very long to accomplish.
 
 `auth()`  
 Return a credential from token for end-user to access the Google Sheets. If there is no token, it will create a token file based on the user's API credentials.
@@ -239,7 +253,7 @@ Return data obtained from the specified Google Sheets range.
 > Credential token obtained from `auth()`.
 >  
 > - spreadsheet_id : str  
-> The unique ID of a spreadsheet one wants to access.
+> The unique ID of a spreadsheet one wants to access. Parsed from the URL in the config.json
 >  
 > - range_name : str  
 > A Google Sheet range to get data from.
@@ -257,7 +271,7 @@ Write data to a single range.
 > Credential token obtained from `auth()`.
 >  
 > - spreadsheet_id : str  
-> The unique ID of a spreadsheet one wants to access.
+> The unique ID of a spreadsheet one wants to access. Parsed from the URL in the config.json
 >  
 > - range_name : str  
 > A Google Sheet range to get data from.
@@ -299,3 +313,196 @@ A function which returns the new column for next session.
 > - new_col : str  
 > A string that represents the column for data entry for next session.
 
+---
+
+### attendance.py
+
+Code concerning displaying the GUI for attendance-related tasks.
+
+`Attendance`  
+A QWidget class/object that displays camera feed and scanned information.
+
+### qrRead.py
+
+Code concerning the reading, processing, and updating information from camera feed.
+
+`QRRead(QThread)`  
+A worker thread which captures video and detects QR code.
+
+> Parameters:
+>
+> - None
+>
+> Signals:
+>
+> - ImageUpdate : QImage  
+> Sends out copies of what the camera is capturing after converting from numpy array to QImage. This must be done for all images that needs to be displayed with PyQt5.
+>
+> - InfoUpdate : str  
+> Emits the data read from any QR code detected. A valid BISMUN QR code will have the delegate's identifier encoded in it.
+>
+> - NameUpdate : str  
+> Emits the delegate's full name extracted from a dictionary using the identifier as key.
+
+`Register(QThread)`  
+A worker thread which takes output from `QRRead` and update the Google Sheet accordingly.
+
+> Parameters:
+>
+> - identifier : str  
+> The value emitted from the InfoUpdate signal from the QRRead.
+>
+> Signals:
+>
+> - None
+
+---
+
+### chairing.py
+
+Code concerning displaying the GUI for chairing-related tasks.
+
+`Chairing`  
+A QWidget class/object that displays processes or tasks that concern with chairing such as vote counting and marking conference contributions.
+
+### speech.py
+
+Code concerning the recording of speeches, POI, and amendments.
+
+`RecordWidget`  
+A QWidget that allow chairs to select what kind of contribution (speeches, poi, amendments) that a delegate make and then record it onto the Google Sheets.
+
+`RecordEngagement(QThread)`  
+A worker thread which takes the chair's input (from the drop-down menu) and write those data onto the Google Sheets. It will also display the options that the chairs have (such as list of countries in the room) upon selecting.
+> Parameters:
+>
+> - room : str  
+> The room the chair is chairing in. All the possible options is in the config.json
+>
+> - country (for the run method) : str  
+> The country which made the contribution. All the possible options is extracted from the corresponding tab in the Google Sheets.
+>
+> - speechType (for the run method) : str  
+> The type of contribution the delegate made (speech, amendments, poi)
+>
+> Signals:
+>
+> - None
+
+### timer.py (not done)
+
+Code concerning the timer chairs can use to time delegate's speeches.
+
+### vote.py
+
+Code concerning with the counting of votes and displaying the results of that voting.
+
+`VoteWidget`  
+A QWidget which displays the vote-counting functions, as well as providing the mechanism behind vote calculations (with simple and supermajority taken into account).
+
+---
+
+### managing.py
+
+Code concerning the management and admin stuff that chairs will do, including homework recording, generating QR codes and fact-checking.
+
+`Managing`  
+A QWidget class/object that displays the GUI for processes or tasks concerning admin and management.
+
+### homework.py
+
+Code concerning with recording the completion of homework (ie: researching and drafting resolutions).
+
+`HomeworkWidget`  
+A QWidget which displays the drop-down menu for chairs to mark homework completion. It has the following options: delegate's name, tasks, and status.
+
+`RecordHomework(QThread)`  
+A worker thread which takes inputs from the drop-down menus and record it appropriately onto the Google Sheets.
+> Parameters:
+>
+> - name_list : 1D list  
+> List of all the delegate's name. Extracted from the Google Sheets.
+>
+> - name : str  
+> The delegate's name. Possible options are in the name_list parameter.
+>
+> - homework : str  
+> The type of homework the chair wants to mark. Currently there are two options: research and resolution drafting.
+>
+> - status : str  
+> Completion status. All the possible status is in the config.json
+>
+> Signals:
+>
+> - None
+
+### qrCreate.py
+
+Code that concerns with the QR creation processes. Chairs can create QR codes for individual or create everything at once.
+
+`QRCreateWidget`  
+A QWidget which has all the drop-down menus for the QR creation. It acts as a form which allow chairs to submit QR creation requests to their computers and let it cook.
+
+`QRCreate(QThread)`  
+A worker thread which takes input from the drop-down lists in `QRCreateWidget` and produces the correct QR codes in the designated directory in response.
+> Parameters:
+>
+> - option : int  
+> The index of the chosen item in the drop-down menu of options. This will allow the worker to know which QR code to produce.
+>
+> Signals:
+>
+> - None
+
+### wiki.py (not done)
+
+Code that allow chairs to quickly search information on the Wikipedia Encyclopedia and displaying the results for fact-checking.
+
+---
+
+### settings.py (not done/in progress)
+
+### config.json
+
+```json
+{
+    "camera_id": 0,
+    "sheets_url": "www.url-to-google-sheets.com/idk/what/are/you/doing",
+    "present_marker": "/",
+
+    "info": {
+        "page": "delegatesInfo",
+        "start_row": 1
+    },
+
+    "session": {
+        "rooms": [
+            "Room 1",
+            "Room 2"
+        ],
+        "identifier_column": "C",
+        "country_column": "B",
+        "register_column": "G",
+        "speech_column": "H",
+        "amendment_column": "I",
+        "poi_column": "J",
+        "start_row": 3
+    },
+
+    "management": {
+        "sheet": "Task Completion",
+        "start_row": 2,
+        "name_column": "A",
+        "research_column": "B",
+        "speech_column": "C",
+        "status": [
+            "/",
+            "unwritten",
+            "late",
+            "/ but unsubmitted",
+            "excused",
+            "notified"
+        ]
+    }
+}
+```

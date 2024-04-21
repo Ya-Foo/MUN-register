@@ -103,7 +103,7 @@ class QRCreateWidget(QWidget):
         self.Thread1.run(self.selectionIndex)
 
 class QRCreate(QThread):
-    def run(self, option) -> None:
+    def run(self, option: int) -> None:
         if option == 0:
             for identifier, data in all_members.items():
                 img = make_qr(identifier)

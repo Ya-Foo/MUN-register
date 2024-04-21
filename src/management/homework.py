@@ -92,7 +92,7 @@ class HomeworkWidget(QWidget):
         self.Thread1.run(self.name_select.currentText(), self.homework_select.currentText(), self.status_select.currentText())
         
 class RecordHomework(QThread):
-    def __init__(self, name_list) -> None:
+    def __init__(self, name_list: list) -> None:
         super(RecordHomework, self).__init__()
         
         self.name_list = name_list
