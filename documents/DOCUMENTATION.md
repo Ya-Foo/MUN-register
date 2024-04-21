@@ -29,6 +29,10 @@
   - [wiki.py (not done)](#wikipy-not-done)
   - [settings.py (not done/in progress)](#settingspy-not-donein-progress)
   - [config.json](#configjson)
+    - [General config](#general-config)
+    - [info](#info)
+    - [session](#session)
+    - [management](#management)
 
 ## Contributing
 
@@ -462,6 +466,8 @@ Code that allow chairs to quickly search information on the Wikipedia Encycloped
 
 ### settings.py (not done/in progress)
 
+Code that extract all the confirgurations from config.json and also allow the chairs to change those configurations which is then updated accordingly.
+
 ### config.json
 
 ```json
@@ -506,3 +512,50 @@ Code that allow chairs to quickly search information on the Wikipedia Encycloped
     }
 }
 ```
+
+#### General config
+
+The first three attributes of `config.json`.
+
+| Attribute         | Meaning                                                          |
+|-------------------|------------------------------------------------------------------|
+| camera_id         | 0 (default) for webcam or 1 for back cam                         |
+| sheets_url        | The URL of the Google Sheets used for attendance                 |
+| present marker    | The text character that is used by the club to indicate presence |
+
+#### info
+
+The attributes within `"info": {...}`.
+
+| Attribute         | Meaning                                                  |
+|-------------------|----------------------------------------------------------|
+| page              | The name of the sheet where the info is located          |
+| start_row         | The row containing the first delegate                    |
+
+#### session
+
+The attributes within `"session": {...}`.
+
+| Attribute         | Meaning                                                         |
+|-------------------|-----------------------------------------------------------------|
+| rooms             | The name of the sheet where the info is located                 |
+| identifier_column | The column in which the delegates' identifiers are placed       |
+| country_column    | The column in which the delegates' allocated country are placed |
+| register_column   | The column in which attendance will be marked                   |
+| speech_column     | The column in which speech contributions are marked             |
+| amendment_column  | The column in which amendment contributions are marked          |
+| poi_column        | The column in which poi contributions are marked                |
+| start_row         | The row containing the first delegate                           |
+
+#### management
+
+The attributes within `"management": {...}`.
+
+| Attribute         | Meaning                                                           |
+|-------------------|-------------------------------------------------------------------|
+| sheet             | The name of the sheet where the info is located                   |
+| start_row         | The row containing the first delegate                             |
+| name_column       | The column containing delegate's names                            |
+| research_column   | The column in which research homeworks are marked                 |
+| speech_column     | The column in which resolution drafting homeworks are marked      |
+| status            | All of the possible homework completion status                    |
