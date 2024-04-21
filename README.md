@@ -14,7 +14,7 @@ For chairs wishing to install this app, refer to this [user guide](documents/USE
 
 ## Credits
 
-![BISMUN lock-up logo](documents/img/logo.png)
+![BISMUN logo](<documents/img/BISMUN logo.png>)
 
 A program made for the BISHCMC MUN club.
 
