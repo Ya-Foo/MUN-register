@@ -6,6 +6,7 @@
 - [Installation and setup](#installation-and-setup)
   - [The main App](#the-main-app)
   - [Google API](#google-api)
+  - [Testing environment](#testing-environment)
 - [App architecture and mechanisms](#app-architecture-and-mechanisms)
   - [Threading theory](#threading-theory)
     - [Main thread](#main-thread)
@@ -74,6 +75,15 @@ Alternatively, you can create your own credentials using the guidelines from Goo
 
 > [!CAUTION]
 > DO NOT share these files to anyone, nor put it on a public repository as it will cause security risks to your account.
+
+### Testing environment
+
+1. Navigate to `config.json`
+2. Visit this [spreadsheet](https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=0), which have been formatted exactly like the spreadsheet used by chairs.
+3. Paste the URL of the sheet into the key `sheets_url`'s value.
+4. Change `register_column`, `speech_column`, `amendment_column`, and `poi_column` value to G, H, I, J, respectively.
+5. Save the file, and run the app.
+6. If there is a Google sign-in prompt, please sign in using the @bisvietnam.com account.
 
 ## App architecture and mechanisms
 
