@@ -91,7 +91,7 @@ class QRCreateWidget(QWidget):
         self.VBL.addWidget(self.SubmitBTN)
         self.setLayout(self.VBL)
         
-    def SyncOption(self):
+    def SyncOption(self) -> None:
         if self.identifier_select.currentIndex() != self.selectionIndex:
             self.selectionIndex = self.identifier_select.currentIndex()
             self.name_select.setCurrentIndex(self.selectionIndex)

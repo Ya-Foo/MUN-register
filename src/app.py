@@ -209,16 +209,16 @@ class MainWindow(QMainWindow):
         
         self.showMaximized()
     
-    def AttendanceActivate(self):
+    def AttendanceActivate(self) -> None:
         self.MainContent.setCurrentIndex(0)
         
-    def ChairingActivate(self):
+    def ChairingActivate(self) -> None:
         self.MainContent.setCurrentIndex(1)
 
-    def ManagingActivate(self):
+    def ManagingActivate(self) -> None:
         self.MainContent.setCurrentIndex(2)
 
-    def SettingsActivate(self):
+    def SettingsActivate(self) -> None:
         self.MainContent.setCurrentIndex(3)
 
         

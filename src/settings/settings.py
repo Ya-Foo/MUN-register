@@ -106,5 +106,5 @@ class Settings(QWidget):
         self.VBL.addWidget(self.SaveBTN)
         self.setLayout(self.VBL)
         
-    def save(self):
+    def save(self) -> None:
         pass

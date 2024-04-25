@@ -169,40 +169,40 @@ class VoteWidget(QWidget):
         self.VBL.addWidget(self.ResultLabel)
         self.setLayout(self.VBL)
         
-    def incrementVoteFor(self):
+    def incrementVoteFor(self) -> None:
         value = int(self.ForCount.text())
         self.ForCount.setText(f"{value+1}")
         self.calculate()
         
-    def incrementVoteAbstain(self):
+    def incrementVoteAbstain(self) -> None:
         value = int(self.AbstainCount.text())
         self.AbstainCount.setText(f"{value+1}")
         self.calculate()
         
-    def incrementVoteAgainst(self):
+    def incrementVoteAgainst(self) -> None:
         value = int(self.AgainstCount.text())
         self.AgainstCount.setText(f"{value+1}")
         self.calculate()
         
-    def decrementVoteFor(self):
+    def decrementVoteFor(self) -> None:
         value = int(self.ForCount.text())
         if not value: return
         self.ForCount.setText(f"{value-1}")
         self.calculate()
         
-    def decrementVoteAbstain(self):
+    def decrementVoteAbstain(self) -> None:
         value = int(self.AbstainCount.text())
         if not value: return
         self.AbstainCount.setText(f"{value-1}")
         self.calculate()
         
-    def decrementVoteAgainst(self):
+    def decrementVoteAgainst(self) -> None:
         value = int(self.AgainstCount.text())
         if not value: return
         self.AgainstCount.setText(f"{value-1}")
         self.calculate()
     
-    def calculate(self):
+    def calculate(self) -> None:
         try:
             for_c, against_c = int(self.ForCount.text()), int(self.AgainstCount.text())
             total = for_c + against_c

@@ -88,7 +88,7 @@ class HomeworkWidget(QWidget):
         self.VBL.addWidget(self.SubmitBTN)
         self.setLayout(self.VBL)
         
-    def Submit(self):
+    def Submit(self) -> None:
         self.Thread1.run(self.name_select.currentText(), self.homework_select.currentText(), self.status_select.currentText())
         
 class RecordHomework(QThread):

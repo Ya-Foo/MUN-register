@@ -117,11 +117,11 @@ class Attendance(QWidget):
         
         self.show()
         
-    def ImageUpdateSlot(self, Image):
+    def ImageUpdateSlot(self, Image: QImage) -> None:
         self.FeedLabel.setPixmap(QPixmap.fromImage(Image))
         
-    def IdentifierUpdateSlot(self, Text):
+    def IdentifierUpdateSlot(self, Text: str) -> None:
         self.IdentifierLabel.setText(Text)
         
-    def NameUpdateSlot(self, Text):
+    def NameUpdateSlot(self, Text: str) -> None:
         self.NameLabel.setText(Text)

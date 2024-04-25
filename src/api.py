@@ -26,7 +26,7 @@ def auth():
     return creds
 
 
-def get_values(creds, spreadsheet_id, range_name):
+def get_values(creds, spreadsheet_id: str, range_name: str) -> list[list]:
     try:
         service = build("sheets", "v4", credentials=creds)
 
@@ -44,7 +44,7 @@ def get_values(creds, spreadsheet_id, range_name):
         return error
 
 
-def write_values(creds, spreadsheet_id, range_name, value_input_option, value):
+def write_values(creds, spreadsheet_id: str, range_name: str, value_input_option: str, value: str) -> None:
     try:
         service = build("sheets", "v4", credentials=creds)
         values = [

@@ -89,7 +89,7 @@ class ExitWindow(QWidget):
         
         self.show()
         
-    def yes(self):
+    def yes(self) -> None:
         with open("src/settings/config.json", 'r') as f:
             data = json.loads(f.read())
             session_info = data["session"]
@@ -102,7 +102,7 @@ class ExitWindow(QWidget):
             f.write(json.dumps(data, indent=4))
         self.close()
     
-    def no(self):
+    def no(self) -> None:
         self.close()
         
 
