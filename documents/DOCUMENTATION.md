@@ -36,7 +36,10 @@
 
 ## Contributing
 
-1. Ensure you have Python installed.
+> [!NOTE]
+> If this is your first time contributing to this project, please add your name to the [CONTRIBUTION.md](CONTRIBUTORS.md) file along with the date when you joined this project and your GitHub username. This is so that you guys all get acknowledged for your hard work.
+
+1. Ensure you have Python and Git installed.
 2. Create a GitHub account if not already done so.
 3. Fork this repo.
 4. Make a clone of the forked repo on your local machine.
@@ -44,10 +47,10 @@
 6. Push changes to your fork.
 7. Issue a pull request and wait for me to review it.
 8. If all goes well, I will merge your pull requests.
-9. Please make sure your branch is always up-to-date with the main branch.
 
-> [!NOTE]
-> If this is your first time contributing to this project, please add your name to the [CONTRIBUTION.md](CONTRIBUTORS.md) file along with the date when you first joined and your GitHub username. This is so that you guys all get acknowledged for your hard work.
+> [!IMPORTANT]
+> Please make sure your branch is always up-to-date with the main branch.  
+> Also please write the documentation for any code you wrote.
 
 ## Installation and setup
 

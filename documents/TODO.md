@@ -23,3 +23,5 @@
   - [ ] Set the time and start the timer
   - [ ] Pause / stop the timer
   - [ ] Reset timer
+
+- [ ] Figure out how to compile this into an executable for easier installation
