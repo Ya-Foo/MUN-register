@@ -8,7 +8,7 @@ All the libraries used is included in the [requirements.txt](requirements.txt).
 
 ## Information
 
-For developers working on this program, refer to this [documentation](documents/DOCUMENTATION.md)
+For developers working on this program, refer to this [documentation](documents/DOCUMENTATION.md).
 
 For chairs wishing to install this app, refer to this [user guide](documents/USERGUIDE.md).
 
