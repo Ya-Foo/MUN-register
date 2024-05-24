@@ -3,36 +3,36 @@
 ## Table of contents <!-- omit from toc -->
 
 - [Contributing](#contributing)
-- [Installation and setup](#installation-and-setup)
-  - [The main App](#the-main-app)
-  - [Google API](#google-api)
-  - [Testing environment](#testing-environment)
-- [App architecture and mechanisms](#app-architecture-and-mechanisms)
-  - [Threading theory](#threading-theory)
-    - [Main thread](#main-thread)
-    - [Worker thread](#worker-thread)
-  - [Threading implementation](#threading-implementation)
-- [App GUI](#app-gui)
-- [Code organisation](#code-organisation)
-  - [api.py](#apipy)
-  - [app.py](#apppy)
-  - [end.py](#endpy)
-  - [attendance.py](#attendancepy)
-  - [qrRead.py](#qrreadpy)
-  - [chairing.py](#chairingpy)
-  - [speech.py](#speechpy)
-  - [timer.py (not done)](#timerpy-not-done)
-  - [vote.py](#votepy)
-  - [managing.py](#managingpy)
-  - [homework.py](#homeworkpy)
-  - [qrCreate.py](#qrcreatepy)
-  - [wiki.py (not done)](#wikipy-not-done)
-  - [settings.py (not done/in progress)](#settingspy-not-donein-progress)
-  - [config.json](#configjson)
-    - [General config](#general-config)
-    - [info](#info)
-    - [session](#session)
-    - [management](#management)
+- [1. Installation and setup](#1-installation-and-setup)
+  - [1.1 The main App](#11-the-main-app)
+  - [1.2. Google API](#12-google-api)
+  - [1.3. Testing environment](#13-testing-environment)
+- [2. App architecture and mechanisms](#2-app-architecture-and-mechanisms)
+  - [2.1. Threading theory](#21-threading-theory)
+    - [2.1.1 Main thread](#211-main-thread)
+    - [2.1.2 Worker thread](#212-worker-thread)
+  - [2.2. Threading implementation](#22-threading-implementation)
+- [3. App GUI](#3-app-gui)
+- [4. Code organisation](#4-code-organisation)
+  - [4.1. api.py](#41-apipy)
+  - [4.2. app.py](#42-apppy)
+  - [4.3. end.py](#43-endpy)
+  - [4.4. attendance.py](#44-attendancepy)
+  - [4.5. qrRead.py](#45-qrreadpy)
+  - [4.6. chairing.py](#46-chairingpy)
+  - [4.7. speech.py](#47-speechpy)
+  - [4.8. timer.py (not done)](#48-timerpy-not-done)
+  - [4.9. vote.py](#49-votepy)
+  - [4.10. managing.py](#410-managingpy)
+  - [4.11. homework.py](#411-homeworkpy)
+  - [4.12. qrCreate.py](#412-qrcreatepy)
+  - [4.13. wiki.py (not done)](#413-wikipy-not-done)
+  - [4.14. settings.py (not done/in progress)](#414-settingspy-not-donein-progress)
+- [5. Configuration - config.json](#5-configuration---configjson)
+  - [5.1 General config](#51-general-config)
+  - [5.2 info](#52-info)
+  - [5.3 session](#53-session)
+  - [5.4 management](#54-management)
 
 ## Contributing
 
@@ -52,9 +52,9 @@
 > Please make sure your branch is always up-to-date with the main branch.  
 > Also please write the documentation for any code you wrote.
 
-## Installation and setup
+## 1. Installation and setup
 
-### The main App
+### 1.1 The main App
 
 Once you have this project on your local machine:
 
@@ -83,7 +83,7 @@ Once you have this project on your local machine:
    md auth
    ```
 
-### Google API
+### 1.2. Google API
 
 > [!IMPORTANT]
 > This is only used only for features which involves reading and writing data onto the BISMUN Google Sheet.  
@@ -96,7 +96,7 @@ Alternatively, you can create your own credentials using the guidelines from Goo
 > [!CAUTION]
 > DO NOT share these files to anyone, nor put it on a public repository as it will cause security risks to your account.
 
-### Testing environment
+### 1.3. Testing environment
 
 1. Navigate to `config.json`
 2. Visit this [spreadsheet](https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=0), which have been formatted exactly like the spreadsheet used by chairs.
@@ -105,20 +105,20 @@ Alternatively, you can create your own credentials using the guidelines from Goo
 5. Save the file, and run the app.
 6. If there is a Google sign-in prompt, please sign in using the @bisvietnam.com account.
 
-## App architecture and mechanisms
+## 2. App architecture and mechanisms
 
-### Threading theory
+### 2.1. Threading theory
 
 The library used to create this app is PyQt5. They provide their own infrastructure to create multithreaded applications using `QThread`. There are two main kinds of Thread:
 
 1. Main thread
 2. Worker threads
 
-#### Main thread
+#### 2.1.1 Main thread
 
 The Main thread is essentially the main application and its GUI run. It runs after the `.exec()` function is called on the `QApplication` object. Any tasks or events that takes place in this thread, including the user's interaction with the GUI, will run **synchronously** (one tasks after another). So, if you start a long-running task in the main thread, then the application needs to wait for that task to finish, and the GUI becomes unresponsive.
 
-#### Worker thread
+#### 2.1.2 Worker thread
 
 You can create as many worker threads as you need in your PyQt applications. Worker threads are secondary threads of execution that are used to process other heavy tasks which might freeze the main GUI (for example, in our case, extracting information from camera or sending HTTPs requests to Google Sheets).
 
@@ -128,7 +128,7 @@ To communicate with the Main thread (i.e to tell it what to display), we use a s
 
 See diagram below to visualise this:
 
-### Threading implementation
+### 2.2. Threading implementation
 
 1. Create a worker class
 
@@ -189,7 +189,7 @@ See diagram below to visualise this:
 
 There are many more things you can do with Threads, just visit the [PyQt5 documentation](https://doc.qt.io/qtforpython-5/) to find out more.
 
-## App GUI
+## 3. App GUI
 
 Gia Phu and Henry have already designed the GUI so follow their designs [here](https://docs.google.com/presentation/d/1qY5cqMBw-6FbdSAbfHJeYvB0jWfJhM9Rk-8UDwVV-hQ/edit#slide=id.g2c20d570521_0_10). If you do not have access, change to @bisvietnam.com account.
 
@@ -204,7 +204,7 @@ To grasp the basics of creating GUI with PyQt5, please have a read through [this
 
 For any web-devs out there, this is very similar to HTML and CSS, where the Main application is the `<body>` and the widgets are `<div>` elements; both can be customised with a language similar to CSS.
 
-## Code organisation
+## 4. Code organisation
 
 ```text
 src
@@ -237,7 +237,7 @@ src
         __init__.py
 ```
 
-### api.py
+### 4.1. api.py
 
 Contain code for creating tokens for API operations such as creating a token, read and write to Google Sheets. Visit Google's [documentation](https://developers.google.com/sheets/api/guides/concepts) for a more detailed view and to familiarise yourself with the terminologies. Every read/write operations will be done on a worker thread because they usually take very long to accomplish.
 
@@ -293,11 +293,11 @@ Write data to a single range.
 >
 > - error : HttpError
 
-### app.py
+### 4.2. app.py
 
 Where the Main thread is coded and run.
 
-### end.py
+### 4.3. end.py
 
 Code for the exit window of the program.
 
@@ -322,14 +322,14 @@ A function which returns the new column for next session.
 
 ---
 
-### attendance.py
+### 4.4. attendance.py
 
 Code concerning displaying the GUI for attendance-related tasks.
 
 `Attendance`  
 A QWidget class/object that displays camera feed and scanned information.
 
-### qrRead.py
+### 4.5. qrRead.py
 
 Code concerning the reading, processing, and updating information from camera feed.
 
@@ -365,14 +365,14 @@ A worker thread which takes output from `QRRead` and update the Google Sheet acc
 
 ---
 
-### chairing.py
+### 4.6. chairing.py
 
 Code concerning displaying the GUI for chairing-related tasks.
 
 `Chairing`  
 A QWidget class/object that displays processes or tasks that concern with chairing such as vote counting and marking conference contributions.
 
-### speech.py
+### 4.7. speech.py
 
 Code concerning the recording of speeches, POI, and amendments.
 
@@ -396,11 +396,11 @@ A worker thread which takes the chair's input (from the drop-down menu) and writ
 >
 > - None
 
-### timer.py (not done)
+### 4.8. timer.py (not done)
 
 Code concerning the timer chairs can use to time delegate's speeches.
 
-### vote.py
+### 4.9. vote.py
 
 Code concerning with the counting of votes and displaying the results of that voting.
 
@@ -409,14 +409,14 @@ A QWidget which displays the vote-counting functions, as well as providing the m
 
 ---
 
-### managing.py
+### 4.10. managing.py
 
 Code concerning the management and admin stuff that chairs will do, including homework recording, generating QR codes and fact-checking.
 
 `Managing`  
 A QWidget class/object that displays the GUI for processes or tasks concerning admin and management.
 
-### homework.py
+### 4.11. homework.py
 
 Code concerning with recording the completion of homework (ie: researching and drafting resolutions).
 
@@ -443,7 +443,7 @@ A worker thread which takes inputs from the drop-down menus and record it approp
 >
 > - None
 
-### qrCreate.py
+### 4.12. qrCreate.py
 
 Code that concerns with the QR creation processes. Chairs can create QR codes for individual or create everything at once.
 
@@ -461,17 +461,17 @@ A worker thread which takes input from the drop-down lists in `QRCreateWidget` a
 >
 > - None
 
-### wiki.py (not done)
+### 4.13. wiki.py (not done)
 
 Code that allow chairs to quickly search information on the Wikipedia Encyclopedia and displaying the results for fact-checking.
 
 ---
 
-### settings.py (not done/in progress)
+### 4.14. settings.py (not done/in progress)
 
 Code that extract all the confirgurations from config.json and also allow the chairs to change those configurations which is then updated accordingly.
 
-### config.json
+## 5. Configuration - config.json
 
 ```json
 {
@@ -516,7 +516,7 @@ Code that extract all the confirgurations from config.json and also allow the ch
 }
 ```
 
-#### General config
+### 5.1 General config
 
 The first three attributes of `config.json`.
 
@@ -526,7 +526,7 @@ The first three attributes of `config.json`.
 | sheets_url        | The URL of the Google Sheets used for attendance                 |
 | present marker    | The text character that is used by the club to indicate presence |
 
-#### info
+### 5.2 info
 
 The attributes within `"info": {...}`.
 
@@ -535,7 +535,7 @@ The attributes within `"info": {...}`.
 | page              | The name of the sheet where the info is located          |
 | start_row         | The row containing the first delegate                    |
 
-#### session
+### 5.3 session
 
 The attributes within `"session": {...}`.
 
@@ -550,7 +550,7 @@ The attributes within `"session": {...}`.
 | poi_column        | The column in which poi contributions are marked                |
 | start_row         | The row containing the first delegate                           |
 
-#### management
+### 5.4 management
 
 The attributes within `"management": {...}`.
 
