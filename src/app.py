@@ -33,7 +33,7 @@ import pyautogui, sys
 from attendance.attendance import Attendance
 from chairing.chairing import Chairing
 from management.managing import Managing
-from settings.settings import Settings
+from settings.settingsWidget import Settings
 from end import ExitWindow
 
 # Constants
