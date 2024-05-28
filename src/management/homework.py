@@ -57,6 +57,7 @@ class HomeworkWidget(QWidget):
         self.name_range = f"'{management_page}'!{management_name_col}{management_start_row}:{management_name_col}1000"
         self.name_list = [i[0] for i in api.get_values(creds, sheets_id, self.name_range)]
         self.name_select.addItems(self.name_list)
+        self.name_select.setEditable(True)
         
         # HW category combobox
         self.homework_select = QComboBox()

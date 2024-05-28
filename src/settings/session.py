@@ -27,20 +27,23 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
+from settings.settings import attendance_lookup_col, attendance_register_col, amendment_col, country_col, poi_col, speech_col
+
 class SessionSettings(QWidget):
     def __init__(self) -> None:
         super(SessionSettings, self).__init__()
         
         self.VBL = QVBoxLayout()
         self.title = QLabel("Session")
+        self.title.setStyleSheet("font-size: 24pt; font-weight: bold")
         self.setStyleSheet("""
             .QLabel {
-                font-size: 12pt;
+                font-size: 16pt;
                 color: white;
                 padding-top: 35px;
             }
         """)
-        self.setContentsMargins(10, 10, 25, 10)
+        self.setContentsMargins(10, 10, 25, 15)
         self.VBL.setAlignment(Qt.AlignTop)
         
         # page selection box
@@ -52,28 +55,28 @@ class SessionSettings(QWidget):
         self.startrowCounter = QDoubleSpinBox()
         
         # identifier text area
-        self.identifierLabel = QLabel("Identifier")
-        self.identifierSelection = QLineEdit()
+        self.identifierLabel = QLabel("Identifier Column")
+        self.identifierSelection = QLineEdit(attendance_lookup_col)
         
-        # research text area
-        self.countryLabel = QLabel("Country")
-        self.countrySelection = QLineEdit()
+        # country text area
+        self.countryLabel = QLabel("Country Column")
+        self.countrySelection = QLineEdit(country_col)
         
-        # speech clause text area
-        self.registerLabel = QLabel("Register")
-        self.registerSelection = QLineEdit()
+        # attendance text area
+        self.registerLabel = QLabel("Register Column")
+        self.registerSelection = QLineEdit(attendance_register_col)
         
-        # identifier text area
-        self.speechLabel = QLabel("Speech")
-        self.speechSelection = QLineEdit()
+        # speech text area
+        self.speechLabel = QLabel("Speech Column")
+        self.speechSelection = QLineEdit(speech_col)
         
-        # research text area
-        self.amendmentLabel = QLabel("Amendment")
-        self.amendmentSelection = QLineEdit()
+        # amendment text area
+        self.amendmentLabel = QLabel("Amendment Column")
+        self.amendmentSelection = QLineEdit(amendment_col)
         
-        # speech clause text area
-        self.poiLabel = QLabel("POI")
-        self.poiSelection = QLineEdit()
+        # poi text area
+        self.poiLabel = QLabel("POI Column")
+        self.poiSelection = QLineEdit(poi_col)
         
         # add everything to layout
         self.VBL.addWidget(self.title)

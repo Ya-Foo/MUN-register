@@ -27,6 +27,8 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
+from settings.settings import sheets_url, present
+
 class GeneralSettings(QWidget):
     def __init__(self) -> None:
         super(GeneralSettings, self).__init__()
@@ -34,14 +36,15 @@ class GeneralSettings(QWidget):
         self.VBL = QVBoxLayout()
         
         self.title = QLabel("General")
+        self.title.setStyleSheet("font-size: 24pt; font-weight: bold")
         self.setStyleSheet("""
             .QLabel {
-                font-size: 12pt;
+                font-size: 16pt;
                 color: white;
                 padding-top: 35px;
             }
         """)
-        self.setContentsMargins(10, 10, 25, 10)
+        self.setContentsMargins(10, 10, 25, 15)
         self.VBL.setAlignment(Qt.AlignTop)
         
         # camera selection box
@@ -50,11 +53,12 @@ class GeneralSettings(QWidget):
         
         # sheet url text area
         self.sheeturlLabel = QLabel("Sheet URL")
-        self.sheetURLSelection = QLineEdit()
+        self.sheetURLSelection = QLineEdit(sheets_url)
+        self.sheetURLSelection.setCursorPosition(0)
         
         # present marker text area
         self.presentmarkerLabel = QLabel("Present marker")
-        self.presentmarkerSelection = QLineEdit()
+        self.presentmarkerSelection = QLineEdit(present)
                 
         # add everything to layout
         self.VBL.addWidget(self.title)

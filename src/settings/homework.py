@@ -27,20 +27,23 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
+from settings.settings import management_name_col, management_research_col, management_speech_col
+
 class HomeworkSettings(QWidget):
     def __init__(self) -> None:
         super(HomeworkSettings, self).__init__()
         
         self.VBL = QVBoxLayout()
         self.title = QLabel("Homework")
+        self.title.setStyleSheet("font-size: 24pt; font-weight: bold")
         self.setStyleSheet("""
             .QLabel {
-                font-size: 12pt;
+                font-size: 16pt;
                 color: white;
                 padding-top: 35px;
             }
         """)
-        self.setContentsMargins(10, 10, 25, 10)
+        self.setContentsMargins(10, 10, 25, 15)
         self.VBL.setAlignment(Qt.AlignTop)
         
         # page selection box
@@ -52,16 +55,16 @@ class HomeworkSettings(QWidget):
         self.startrowCounter = QDoubleSpinBox()
         
         # identifier text area
-        self.identifierLabel = QLabel("Identifier")
-        self.identifierSelection = QLineEdit()
+        self.identifierLabel = QLabel("Identifier Column")
+        self.identifierSelection = QLineEdit(management_name_col)
         
         # research text area
-        self.researchLabel = QLabel("Research")
-        self.researchSelection = QLineEdit()
+        self.researchLabel = QLabel("Research Column")
+        self.researchSelection = QLineEdit(management_research_col)
         
         # speech clause text area
-        self.speechclauseLabel = QLabel("Speech & Clauses")
-        self.speechclauseSelection = QLineEdit()
+        self.speechclauseLabel = QLabel("Speech & Clauses Column")
+        self.speechclauseSelection = QLineEdit(management_speech_col)
         
         # add everything to layout
         self.VBL.addWidget(self.title)

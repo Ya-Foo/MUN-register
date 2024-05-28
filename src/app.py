@@ -56,7 +56,7 @@ class MainWindow(QMainWindow):
                 color: #6b6b6b;
                 padding-top: 10px;
                 padding-bottom: 10px;
-                padding-left: 10px;
+                padding-left: 0px;
                 font-size: 12pt;
             }
             .QComboBox::drop-down {
@@ -79,6 +79,19 @@ class MainWindow(QMainWindow):
             .QPushButton:hover {
                 background-color: #242424;
                 color: #AAAAAA;
+            }
+            
+            .QLineEdit {
+                border: 3px solid transparent;
+                border-bottom-width: 3px;
+                border-bottom-style: solid;
+                border-bottom-color: white;
+                background: transparent;
+                color: #6b6b6b;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                padding-left: 0px;
+                font-size: 12pt;
             }
         """)
         
