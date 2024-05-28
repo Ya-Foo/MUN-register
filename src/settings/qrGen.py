@@ -26,3 +26,29 @@ SOFTWARE.
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
+
+class QRSettings(QWidget):
+    def __init__(self) -> None:
+        super(QRSettings, self).__init__()
+        
+        self.VBL = QVBoxLayout()
+        self.title = QLabel("QR Generation")
+        self.setStyleSheet("""
+            .QLabel {
+                font-size: 12pt;
+                color: white;
+                padding-top: 35px;
+            }
+        """)
+        self.setContentsMargins(10, 10, 25, 10)
+        self.VBL.setAlignment(Qt.AlignTop)
+        
+        # qr file selection
+        self.qrfileLabel = QLabel("File location")
+        self.qrfileSelection = QLineEdit()
+        
+        # add everything to layout
+        self.VBL.addWidget(self.title)
+        self.VBL.addWidget(self.qrfileLabel)
+        self.VBL.addWidget(self.qrfileSelection)
+        self.setLayout(self.VBL)

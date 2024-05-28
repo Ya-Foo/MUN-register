@@ -26,3 +26,35 @@ SOFTWARE.
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
+
+class InformationSettings(QWidget):
+    def __init__(self) -> None:
+        super(InformationSettings, self).__init__()
+        
+        self.VBL = QVBoxLayout()
+        self.title = QLabel("Information sheet")
+        self.setStyleSheet("""
+            .QLabel {
+                font-size: 12pt;
+                color: white;
+                padding-top: 35px;
+            }
+        """)
+        self.setContentsMargins(10, 10, 25, 10)
+        self.VBL.setAlignment(Qt.AlignTop)
+        
+        # page selection box
+        self.pageLabel = QLabel("Page")
+        self.pageSelection = QComboBox()
+        
+        # start row counter
+        self.startrowLabel = QLabel("Start row")
+        self.startrowCounter = QDoubleSpinBox()
+        
+        # add everything to layout
+        self.VBL.addWidget(self.title)
+        self.VBL.addWidget(self.pageLabel)
+        self.VBL.addWidget(self.pageSelection)
+        self.VBL.addWidget(self.startrowLabel)
+        self.VBL.addWidget(self.startrowCounter)
+        self.setLayout(self.VBL)

@@ -26,3 +26,53 @@ SOFTWARE.
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
+
+class HomeworkSettings(QWidget):
+    def __init__(self) -> None:
+        super(HomeworkSettings, self).__init__()
+        
+        self.VBL = QVBoxLayout()
+        self.title = QLabel("Homework")
+        self.setStyleSheet("""
+            .QLabel {
+                font-size: 12pt;
+                color: white;
+                padding-top: 35px;
+            }
+        """)
+        self.setContentsMargins(10, 10, 25, 10)
+        self.VBL.setAlignment(Qt.AlignTop)
+        
+        # page selection box
+        self.pageLabel = QLabel("Page")
+        self.pageSelection = QComboBox()
+        
+        # start row counter
+        self.startrowLabel = QLabel("Start row")
+        self.startrowCounter = QDoubleSpinBox()
+        
+        # identifier text area
+        self.identifierLabel = QLabel("Identifier")
+        self.identifierSelection = QLineEdit()
+        
+        # research text area
+        self.researchLabel = QLabel("Research")
+        self.researchSelection = QLineEdit()
+        
+        # speech clause text area
+        self.speechclauseLabel = QLabel("Speech & Clauses")
+        self.speechclauseSelection = QLineEdit()
+        
+        # add everything to layout
+        self.VBL.addWidget(self.title)
+        self.VBL.addWidget(self.pageLabel)
+        self.VBL.addWidget(self.pageSelection)
+        self.VBL.addWidget(self.startrowLabel)
+        self.VBL.addWidget(self.startrowCounter)
+        self.VBL.addWidget(self.identifierLabel)
+        self.VBL.addWidget(self.identifierSelection)
+        self.VBL.addWidget(self.researchLabel)
+        self.VBL.addWidget(self.researchSelection)
+        self.VBL.addWidget(self.speechclauseLabel)
+        self.VBL.addWidget(self.speechclauseSelection)
+        self.setLayout(self.VBL)

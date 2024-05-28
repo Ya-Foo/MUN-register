@@ -26,3 +26,71 @@ SOFTWARE.
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
+
+class SessionSettings(QWidget):
+    def __init__(self) -> None:
+        super(SessionSettings, self).__init__()
+        
+        self.VBL = QVBoxLayout()
+        self.title = QLabel("Session")
+        self.setStyleSheet("""
+            .QLabel {
+                font-size: 12pt;
+                color: white;
+                padding-top: 35px;
+            }
+        """)
+        self.setContentsMargins(10, 10, 25, 10)
+        self.VBL.setAlignment(Qt.AlignTop)
+        
+        # page selection box
+        self.pageLabel = QLabel("Page")
+        self.pageSelection = QComboBox()
+        
+        # start row counter
+        self.startrowLabel = QLabel("Start row")
+        self.startrowCounter = QDoubleSpinBox()
+        
+        # identifier text area
+        self.identifierLabel = QLabel("Identifier")
+        self.identifierSelection = QLineEdit()
+        
+        # research text area
+        self.countryLabel = QLabel("Country")
+        self.countrySelection = QLineEdit()
+        
+        # speech clause text area
+        self.registerLabel = QLabel("Register")
+        self.registerSelection = QLineEdit()
+        
+        # identifier text area
+        self.speechLabel = QLabel("Speech")
+        self.speechSelection = QLineEdit()
+        
+        # research text area
+        self.amendmentLabel = QLabel("Amendment")
+        self.amendmentSelection = QLineEdit()
+        
+        # speech clause text area
+        self.poiLabel = QLabel("POI")
+        self.poiSelection = QLineEdit()
+        
+        # add everything to layout
+        self.VBL.addWidget(self.title)
+        self.VBL.addWidget(self.pageLabel)
+        self.VBL.addWidget(self.pageSelection)
+        self.VBL.addWidget(self.startrowLabel)
+        self.VBL.addWidget(self.startrowCounter)
+        self.VBL.addWidget(self.identifierLabel)
+        self.VBL.addWidget(self.identifierSelection)
+        self.VBL.addWidget(self.countryLabel)
+        self.VBL.addWidget(self.countrySelection)
+        self.VBL.addWidget(self.registerLabel)
+        self.VBL.addWidget(self.registerSelection)
+        self.VBL.addWidget(self.speechLabel)
+        self.VBL.addWidget(self.speechSelection)
+        self.VBL.addWidget(self.amendmentLabel)
+        self.VBL.addWidget(self.amendmentSelection)
+        self.VBL.addWidget(self.poiLabel)
+        self.VBL.addWidget(self.poiSelection)
+        self.setLayout(self.VBL)

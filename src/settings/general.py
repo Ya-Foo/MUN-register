@@ -26,3 +26,42 @@ SOFTWARE.
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
+
+class GeneralSettings(QWidget):
+    def __init__(self) -> None:
+        super(GeneralSettings, self).__init__()
+        
+        self.VBL = QVBoxLayout()
+        
+        self.title = QLabel("General")
+        self.setStyleSheet("""
+            .QLabel {
+                font-size: 12pt;
+                color: white;
+                padding-top: 35px;
+            }
+        """)
+        self.setContentsMargins(10, 10, 25, 10)
+        self.VBL.setAlignment(Qt.AlignTop)
+        
+        # camera selection box
+        self.cameraLabel = QLabel("Camera")
+        self.cameraSelection = QComboBox()
+        
+        # sheet url text area
+        self.sheeturlLabel = QLabel("Sheet URL")
+        self.sheetURLSelection = QLineEdit()
+        
+        # present marker text area
+        self.presentmarkerLabel = QLabel("Present marker")
+        self.presentmarkerSelection = QLineEdit()
+                
+        # add everything to layout
+        self.VBL.addWidget(self.title)
+        self.VBL.addWidget(self.cameraLabel)
+        self.VBL.addWidget(self.cameraSelection)
+        self.VBL.addWidget(self.sheeturlLabel)
+        self.VBL.addWidget(self.sheetURLSelection)
+        self.VBL.addWidget(self.presentmarkerLabel)
+        self.VBL.addWidget(self.presentmarkerSelection)
+        self.setLayout(self.VBL)

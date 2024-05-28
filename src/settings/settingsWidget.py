@@ -30,6 +30,12 @@ from PyQt5.QtCore import *
 import json
 from settings.settings import *
 
+# import all setting groups
+from settings.general import GeneralSettings
+from settings.information import InformationSettings
+from settings.homework import HomeworkSettings
+from settings.session import SessionSettings
+from settings.qrGen import QRSettings
 
 class Settings(QWidget):
     def __init__(self) -> None:
@@ -49,8 +55,20 @@ class Settings(QWidget):
         self.RightFrameLayout = QVBoxLayout()
         
         # add stuff to left side
+        self.General = GeneralSettings()
+        self.Information = InformationSettings()
+        self.Homework = HomeworkSettings()
+        self.LeftFrameLayout.addWidget(self.General)
+        self.LeftFrameLayout.addWidget(self.Information)
+        self.LeftFrameLayout.addWidget(self.Homework)
+        self.LeftFrame.setLayout(self.LeftFrameLayout)
         
         # add stuff to right side
+        self.Session = SessionSettings()
+        self.QRFile = QRSettings()
+        self.RightFrameLayout.addWidget(self.Session)
+        self.RightFrameLayout.addWidget(self.QRFile)
+        self.RightFrame.setLayout(self.RightFrameLayout)
         
         # scroll area for left side
         self.LeftScroll = QScrollArea()
@@ -84,5 +102,7 @@ class Settings(QWidget):
         
     def save(self) -> None:
         new_data = data
+        # saves the values in the text box, combo boxes, etc into new data
+        
         with open("src/settings/config.json", 'w') as f:
             json.dump(new_data, f)
