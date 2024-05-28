@@ -15,7 +15,7 @@
 - [ ] Add a Setting tab so that client can:
   - [ ] Change settings
   - [ ] Save settings to `config.json`
-  - [ ] View the current settings and make the area scrollable
+  - [ ] View the current settings
 
 - [ ] Add Wikipedia section in Management which allow chairs to search and read result from wikipedia. Use wikipedia API (there is a python library for this)
 
