@@ -45,7 +45,7 @@ class InformationSettings(QWidget):
         
         # start row counter
         self.startrowLabel = QLabel("Start row")
-        self.startrowCounter = QDoubleSpinBox()
+        self.startrowCounter = QSpinBox()
         
         # add everything to layout
         self.VBL.addWidget(self.title)

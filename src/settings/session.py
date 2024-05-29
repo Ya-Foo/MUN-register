@@ -45,7 +45,7 @@ class SessionSettings(QWidget):
         
         # start row counter
         self.startrowLabel = QLabel("Start row")
-        self.startrowCounter = QDoubleSpinBox()
+        self.startrowCounter = QSpinBox()
         
         # identifier text area
         self.identifierLabel = QLabel("Identifier Column")

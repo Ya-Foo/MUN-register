@@ -36,14 +36,11 @@ class TimerWidget(QWidget):
         #https://www.youtube.com/watch?v=E7lhFwcDpMI
         
         # set the timer
-        self.TimerHourSet = QDoubleSpinBox()
-        self.TimerHourSet.setDecimals(0)
+        self.TimerHourSet = QSpinBox()
         self.TimerHourSet.setMaximum(24)
-        self.TimerMinuteSet = QDoubleSpinBox()
-        self.TimerMinuteSet.setDecimals(0)
+        self.TimerMinuteSet = QSpinBox()
         self.TimerMinuteSet.setMaximum(59)
-        self.TimerSecondSet = QDoubleSpinBox()
-        self.TimerSecondSet.setDecimals(0)
+        self.TimerSecondSet = QSpinBox()
         self.TimerSecondSet.setMaximum(59)
         
         # start/stop/reset btn
