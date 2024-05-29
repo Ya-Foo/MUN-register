@@ -36,13 +36,6 @@ class HomeworkSettings(QWidget):
         self.VBL = QVBoxLayout()
         self.title = QLabel("Homework")
         self.title.setStyleSheet("font-size: 24pt; font-weight: bold")
-        self.setStyleSheet("""
-            .QLabel {
-                font-size: 16pt;
-                color: white;
-                padding-top: 35px;
-            }
-        """)
         self.setContentsMargins(10, 10, 25, 15)
         self.VBL.setAlignment(Qt.AlignTop)
         

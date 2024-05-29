@@ -158,7 +158,7 @@ class VoteWidget(QWidget):
             border: 1px solid transparent;
             border-radius: 15px;
             margin: 0px 20px;
-            padding: 120px 0px;
+            padding: 100px 0px;
             font: 14pt;
         """)
         self.ResultLabel.setAlignment(Qt.AlignCenter)
@@ -227,7 +227,7 @@ class VoteWidget(QWidget):
                     border: 1px solid transparent;
                     border-radius: 15px;
                     margin: 0px 20px;
-                    padding: 120px 0px;
+                    padding: 110px 0px;
                     font: 14pt;
                     color: green;
                 """)
@@ -237,7 +237,7 @@ class VoteWidget(QWidget):
                     border: 1px solid transparent;
                     border-radius: 15px;
                     margin: 0px 20px;
-                    padding: 120px 0px;
+                    padding: 110px 0px;
                     font: 14pt;
                     color: red;
                 """)

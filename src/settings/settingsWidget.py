@@ -42,6 +42,13 @@ class Settings(QWidget):
         super(Settings, self).__init__()
         
         self.VBL = QVBoxLayout()
+        self.setStyleSheet("""
+            .QLabel {
+                font-size: 16pt;
+                color: white;
+                padding-top: 35px;
+            }
+        """)
         
         # content frame
         self.ContentFrame = QFrame()
