@@ -37,7 +37,7 @@
 ## Contributing
 
 > [!NOTE]
-> If this is your first time contributing to this project, please add your name to the [CONTRIBUTION.md](CONTRIBUTORS.md) file along with the date when you joined this project and your GitHub username. This is so that you guys all get acknowledged for your hard work.
+> If this is your first time contributing to this project, please add your name to the [CONTRIBUTION.md](CONTRIBUTORS.md) file along with the date when you joined this project and your GitHub username. This is so that you guys all get acknowledged for your hard work. (Optional, "sign" using an ASCII art or whatever or add a "hello world" program in your favourite programming language)
 
 1. Ensure you have Python and Git installed.
 2. Create a GitHub account if not already done so.
