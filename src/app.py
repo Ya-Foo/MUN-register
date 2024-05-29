@@ -247,15 +247,19 @@ class MainWindow(QMainWindow):
     
     def AttendanceActivate(self) -> None:
         self.MainContent.setCurrentIndex(0)
+        self.Attendance.Thread1.start()
         
     def ChairingActivate(self) -> None:
         self.MainContent.setCurrentIndex(1)
+        self.Attendance.Thread1.stop()
 
     def ManagingActivate(self) -> None:
         self.MainContent.setCurrentIndex(2)
+        self.Attendance.Thread1.stop()
 
     def SettingsActivate(self) -> None:
         self.MainContent.setCurrentIndex(3)
+        self.Attendance.Thread1.stop()
 
         
 if __name__ == "__main__":
