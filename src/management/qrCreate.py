@@ -29,10 +29,10 @@ from PyQt5.QtCore import *
 
 # other libraries
 from segno import make_qr
-import pyautogui
+import pyautogui, os
 
 # Import settings
-from settings.settings import all_members
+from settings.settings import all_members, qrfilelocation
 
 # Constants
 width, height = pyautogui.size()
@@ -104,11 +104,14 @@ class QRCreateWidget(QWidget):
 
 class QRCreate(QThread):
     def run(self, option: int) -> None:
+        if not os.path.isdir(qrfilelocation):
+            os.mkdir(qrfilelocation)
+        
         if option == 0:
             for identifier, data in all_members.items():
                 img = make_qr(identifier)
-                img.save(f'./qrcodes/{data[0]}.png',scale=10,border=1)
+                img.save(f'{qrfilelocation}{data[0]}.png',scale=10,border=1)
         else:
             img = make_qr([_ for _ in all_members.keys()][option+1])
-            img.save(f'./qrcodes/{[_ for _ in all_members.values()][option-1][0]}.png',scale=10,border=1)
+            img.save(f'{qrfilelocation}{[_ for _ in all_members.values()][option-1][0]}.png',scale=10,border=1)
         self.quit()

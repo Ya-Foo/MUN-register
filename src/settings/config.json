@@ -33,5 +33,6 @@
             "excused",
             "notified"
         ]
-    }
+    },
+    "qrfilelocation": "./qrcodes/"
 }

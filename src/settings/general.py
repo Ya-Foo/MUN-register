@@ -27,7 +27,8 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-from settings.settings import sheets_url, present
+from settings.settings import sheets_url, present, cam_id
+import cv2
 
 class GeneralSettings(QWidget):
     def __init__(self) -> None:
@@ -41,9 +42,26 @@ class GeneralSettings(QWidget):
         self.VBL.setAlignment(Qt.AlignTop)
         
         # camera selection box
+        index = 0
+        available = []
+        i = 10
+        while i > 0:
+            cap = cv2.VideoCapture(index)
+            if cap.read()[0]:
+                available.append(index)
+                cap.release()
+            index += 1
+            i -= 1
+        
         self.cameraLabel = QLabel("Camera")
         self.cameraSelection = QComboBox()
-        
+        self.cameraSelection.addItems(available)
+        if str(cam_id) in available:
+            self.cameraSelection.setCurrentText(str(cam_id))
+        else:
+            self.cameraSelection.addItem("Camera not available")
+            self.cameraSelection.setCurrentText("Camera not available")
+            
         # sheet url text area
         self.sheeturlLabel = QLabel("Sheet URL")
         self.sheetURLSelection = QLineEdit(sheets_url)

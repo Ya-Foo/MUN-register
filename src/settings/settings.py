@@ -85,3 +85,4 @@ with open("src/settings/config.json", 'r') as f:
     management_status = management_info["status"]
 
     present = data["present_marker"]
+    qrfilelocation = data["qrfilelocation"]
