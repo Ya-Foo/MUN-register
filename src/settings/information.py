@@ -27,7 +27,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-from settings.settings import *
+from settings.settings import sheets, all_members_page, all_members_start
 
 class InformationSettings(QWidget):
     def __init__(self) -> None:
@@ -42,10 +42,13 @@ class InformationSettings(QWidget):
         # page selection box
         self.pageLabel = QLabel("Page")
         self.pageSelection = QComboBox()
+        self.pageSelection.addItems(sheets)
+        self.pageSelection.setCurrentText(all_members_page)
         
         # start row counter
         self.startrowLabel = QLabel("Start row")
         self.startrowCounter = QSpinBox()
+        self.startrowCounter.setValue(all_members_start)
         
         # add everything to layout
         self.VBL.addWidget(self.title)

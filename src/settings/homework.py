@@ -27,7 +27,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-from settings.settings import management_name_col, management_research_col, management_speech_col
+from settings.settings import management_name_col, management_research_col, management_speech_col, sheets, management_page, management_start_row
 
 class HomeworkSettings(QWidget):
     def __init__(self) -> None:
@@ -42,10 +42,13 @@ class HomeworkSettings(QWidget):
         # page selection box
         self.pageLabel = QLabel("Page")
         self.pageSelection = QComboBox()
+        self.pageSelection.addItems(sheets)
+        self.pageSelection.setCurrentText(management_page)
         
         # start row counter
         self.startrowLabel = QLabel("Start row")
         self.startrowCounter = QSpinBox()
+        self.startrowCounter.setValue(management_start_row)
         
         # identifier text area
         self.identifierLabel = QLabel("Identifier Column")

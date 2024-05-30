@@ -27,7 +27,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-from settings.settings import attendance_lookup_col, attendance_register_col, amendment_col, country_col, poi_col, speech_col
+from settings.settings import attendance_lookup_col, attendance_register_col, amendment_col, country_col, poi_col, speech_col, sheets, attendance_start
 
 class SessionSettings(QWidget):
     def __init__(self) -> None:
@@ -42,10 +42,12 @@ class SessionSettings(QWidget):
         # page selection box
         self.pageLabel = QLabel("Page")
         self.pageSelection = QComboBox()
+        self.pageSelection.addItems(sheets)
         
         # start row counter
         self.startrowLabel = QLabel("Start row")
         self.startrowCounter = QSpinBox()
+        self.startrowCounter.setValue(attendance_start)
         
         # identifier text area
         self.identifierLabel = QLabel("Identifier Column")

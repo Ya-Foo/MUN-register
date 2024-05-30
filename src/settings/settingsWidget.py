@@ -28,7 +28,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
 import json
-from settings.settings import *
+from settings.settings import data
 
 # import all setting groups
 from settings.general import GeneralSettings
@@ -109,7 +109,31 @@ class Settings(QWidget):
         
     def save(self) -> None:
         new_data = data
-        # saves the values in the text box, combo boxes, etc into new data
+        # syncs values in settings with the config.json
+        all_members_info = new_data["info"]
+        session_info = new_data["session"]
+        management_info = new_data["management"]
         
+        new_data["sheets_url"] = self.General.sheetURLSelection.text()
+        new_data["present_marker"] = self.General.presentmarkerSelection.text()
+        
+        all_members_info["page"] = self.Information.pageSelection.currentText()
+        all_members_info["start_row"] = self.Information.startrowCounter.value()
+        
+        management_info["sheet"] = self.Homework.pageSelection.currentText()
+        management_info["start_row"] = self.Homework.startrowCounter.value()
+        management_info["name_column"] = self.Homework.identifierSelection.text()
+        management_info["research_column"] = self.Homework.researchSelection.text()
+        management_info["speech_column"] = self.Homework.speechclauseSelection.text()
+        
+        session_info["identifier_column"] = self.Session.identifierSelection.text()
+        session_info["register_column"] = self.Session.registerSelection.text()
+        session_info["start_row"] = self.Session.startrowCounter.value()
+        session_info["country_column"] = self.Session.countrySelection.text()
+        session_info["amendment_column"] = self.Session.amendmentSelection.text()
+        session_info["speech_column"] = self.Session.speechSelection.text()
+        session_info["poi_column"] = self.Session.poiSelection.text()
+        
+        # write these new values into file
         with open("src/settings/config.json", 'w') as f:
             json.dump(new_data, f)
