@@ -114,6 +114,7 @@ class Settings(QWidget):
         session_info = new_data["session"]
         management_info = new_data["management"]
         
+        new_data["camera_id"] = self.General.cameraSelection.currentText()
         new_data["sheets_url"] = self.General.sheetURLSelection.text()
         new_data["present_marker"] = self.General.presentmarkerSelection.text()
         
