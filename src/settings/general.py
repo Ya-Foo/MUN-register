@@ -28,7 +28,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
 from settings.settings import sheets_url, present, cam_id
-import cv2
+import cv2, os
 
 class GeneralSettings(QWidget):
     def __init__(self) -> None:
@@ -52,6 +52,7 @@ class GeneralSettings(QWidget):
                 cap.release()
             index += 1
             i -= 1
+            os.system('cls||clear')
         
         self.cameraLabel = QLabel("Camera")
         self.cameraSelection = QComboBox()

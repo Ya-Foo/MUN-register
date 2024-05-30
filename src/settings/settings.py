@@ -28,14 +28,6 @@ import api
 
 import googleapiclient.discovery
 
-def get_spreadsheet(spreadsheet_id):
-    sheets_service = googleapiclient.discovery.build('sheets', 'v4', credentials=creds)
-
-    spreadsheet = sheets_service.spreadsheets().get(spreadsheetId=spreadsheet_id).execute()
-
-    return spreadsheet
-
-
 with open("src/settings/config.json", 'r') as f:
     creds = api.auth()
     data = json.loads(f.read())

@@ -27,7 +27,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-import pyautogui, sys
+import pyautogui, sys, os
 
 # Import from Python files
 from attendance.attendance import Attendance
@@ -278,4 +278,6 @@ if __name__ == "__main__":
     endApp.setPalette(palette)
     endRoot = ExitWindow()
     endRoot.show()
-    sys.exit(endApp.exec())
+    endApp.exec()
+    os.system('cls||clear')
+    sys.exit()
