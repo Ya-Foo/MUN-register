@@ -27,7 +27,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-import json
+import json, sys
 from settings.settings import data
 
 # import all setting groups
@@ -99,7 +99,7 @@ class Settings(QWidget):
         self.ContentFrame.setLayout(self.ContentFrameLayout)
         
         # save button
-        self.SaveBTN = QPushButton("Save")
+        self.SaveBTN = QPushButton("Save & Close")
         self.SaveBTN.clicked.connect(self.save)
         
         # add everything to main
@@ -136,4 +136,6 @@ class Settings(QWidget):
         
         # write these new values into file
         with open("src/settings/config.json", 'w') as f:
-            json.dump(new_data, f)
+            json.dump(new_data, f, indent=4)
+            
+        sys.exit()
