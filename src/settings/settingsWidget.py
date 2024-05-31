@@ -99,7 +99,7 @@ class Settings(QWidget):
         self.ContentFrame.setLayout(self.ContentFrameLayout)
         
         # save button
-        self.SaveBTN = QPushButton("Save & Close")
+        self.SaveBTN = QPushButton("Save and Close")
         self.SaveBTN.clicked.connect(self.save)
         
         # add everything to main
@@ -114,9 +114,13 @@ class Settings(QWidget):
         session_info = new_data["session"]
         management_info = new_data["management"]
         
-        new_data["camera_id"] = self.General.cameraSelection.currentText()
+        camera_id = self.General.cameraSelection.currentText()
+        if camera_id == "Camera unavailable":
+            camera_id = 0
+        new_data["camera_id"] = camera_id
         new_data["sheets_url"] = self.General.sheetURLSelection.text()
         new_data["present_marker"] = self.General.presentmarkerSelection.text()
+        new_data["qrfilelocation"] = self.QRFile.qrfileSelection.text()
         
         all_members_info["page"] = self.Information.pageSelection.currentText()
         all_members_info["start_row"] = self.Information.startrowCounter.value()

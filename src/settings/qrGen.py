@@ -27,7 +27,8 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-from settings.settings import *
+from settings.settings import qrfilelocation
+import os.path as path
 
 class QRSettings(QWidget):
     def __init__(self) -> None:
@@ -42,9 +43,18 @@ class QRSettings(QWidget):
         # qr file selection
         self.qrfileLabel = QLabel("File location")
         self.qrfileSelection = QLineEdit()
+        self.qrfileSelection.setText(qrfilelocation)
+        self.qrfileSelectionBTN = QPushButton("Select folder")
+        self.qrfileSelectionBTN.clicked.connect(self.chooseFolder)
         
         # add everything to layout
         self.VBL.addWidget(self.title)
         self.VBL.addWidget(self.qrfileLabel)
         self.VBL.addWidget(self.qrfileSelection)
+        self.VBL.addWidget(self.qrfileSelectionBTN)
         self.setLayout(self.VBL)
+        
+    def chooseFolder(self):
+        qrfile = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
+        if qrfile != "":
+            self.qrfileSelection.setText(qrfile)

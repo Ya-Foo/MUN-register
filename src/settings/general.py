@@ -60,8 +60,8 @@ class GeneralSettings(QWidget):
         if str(cam_id) in available:
             self.cameraSelection.setCurrentText(str(cam_id))
         else:
-            self.cameraSelection.addItem("Camera not available")
-            self.cameraSelection.setCurrentText("Camera not available")
+            self.cameraSelection.addItem("Camera unavailable")
+            self.cameraSelection.setCurrentText("Camera unavailable")
             
         # sheet url text area
         self.sheeturlLabel = QLabel("Sheet URL")
