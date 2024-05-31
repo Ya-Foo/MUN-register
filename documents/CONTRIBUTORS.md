@@ -15,6 +15,10 @@ Creator of the project (the only person who knows this repository's ancestor)
 Name: Quang Hien (Henry) Bui  
 GitHub: Heinz_Bui  
 Creator and "advertiser" of the project
+
+    ( ☭ ͜ʖ ☭)
+
+======w=w===
 ```
 
 ```txt
