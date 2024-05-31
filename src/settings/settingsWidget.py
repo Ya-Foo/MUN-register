@@ -115,8 +115,7 @@ class Settings(QWidget):
         management_info = new_data["management"]
         
         camera_id = self.General.cameraSelection.currentText()
-        camera_id = 0 if camera_id == "Camera unavailable" else int(camera_id)
-        new_data["camera_id"] = camera_id
+        new_data["camera_id"] = 0 if camera_id == "Camera unavailable" else int(camera_id)
         new_data["sheets_url"] = self.General.sheetURLSelection.text()
         new_data["present_marker"] = self.General.presentmarkerSelection.text()
         new_data["qrfilelocation"] = self.QRFile.qrfileSelection.text()
