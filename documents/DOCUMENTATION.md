@@ -37,7 +37,7 @@
 ## Contributing
 
 > [!NOTE]
-> If this is your first time contributing to this project, please add your name to the [CONTRIBUTION.md](CONTRIBUTORS.md) file along with the date when you joined this project and your GitHub username. This is so that you guys all get acknowledged for your hard work. (Optional, "sign" using an ASCII art or whatever or add a "hello world" program in your favourite programming language)
+> If this is your first time contributing to this project, please add your name to the [CONTRIBUTION.md](CONTRIBUTORS.md) file along with the time when you joined this project and your GitHub username. This is so that you guys all get acknowledged for your hard work. (Optional, "sign" using an ASCII art or whatever or add a "hello world" program in your favourite programming language)
 
 1. Ensure you have Python and Git installed.
 2. Create a GitHub account if not already done so.
@@ -89,9 +89,9 @@ Once you have this project on your local machine:
 > This is only used only for features which involves reading and writing data onto the BISMUN Google Sheet.  
 > Regardless, you should still get this set up step done.
 
-Download the `.env` file I sent you and put it in `/auth`.
+Download the `.json` file I sent you and put it in `/auth`.
 
-Alternatively, you can create your own credentials using the guidelines from Google [here](https://developers.google.com/workspace/guides/get-started). Make sure you enable Google Sheets API when enabling Google Workspace APIs and choose OAuth 2.0 for authorization. Finally convert your `credentials.json` to `credentials.env`.
+Alternatively, you can create your own credentials using the guidelines from Google [here](https://developers.google.com/workspace/guides/get-started). Make sure you enable Google Sheets API when enabling Google Workspace APIs and choose OAuth 2.0 for authorization.
 
 > [!CAUTION]
 > DO NOT share these files to anyone, nor put it on a public repository as it will cause security risks to your account.

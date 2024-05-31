@@ -2,11 +2,10 @@
 
 ## Security
 
-- [ ] Encrypt and decrypt API credentials: hasing or obfuscate it inside the Wojak image
+- [ ] Encrypt and decrypt API credentials: hashing or obfuscate it inside the Wojak image (any other method works too but thats no fun)
 
 ## Enhancement
 
-- [ ] Turn off camera after exiting the Attendance tab
 - [ ] Make GUI consistent across different screen size
 - [ ] Migrate all local stylings to a global stylesheet
 
@@ -24,4 +23,4 @@
   - [ ] Pause / stop the timer
   - [ ] Reset timer
 
-- [ ] Figure out how to compile this into an executable for easier installation
+- [ ] Figure out how to compile this into an executable on Windows + macOS for easier installation

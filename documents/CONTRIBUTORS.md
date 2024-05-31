@@ -3,7 +3,7 @@
 ```txt
 Name: Gia Phu Huynh  
 GitHub: Ya-Foo or Ya-Hoo  
-Joined since the project's inception (the only person who knows this repository's ancestor)  
+Creator of the project (the only person who knows this repository's ancestor)  
 
      ^...^
     / o,o \
@@ -14,7 +14,7 @@ Joined since the project's inception (the only person who knows this repository'
 ```txt
 Name: Quang Hien (Henry) Bui  
 GitHub: Heinz_Bui  
-Joined since the project's inception
+Creator and "advertiser" of the project
 ```
 
 ```txt
