@@ -48,7 +48,7 @@ class GeneralSettings(QWidget):
         while i > 0:
             cap = cv2.VideoCapture(index)
             if cap.read()[0]:
-                available.append(index)
+                available.append(str(index))
                 cap.release()
             index += 1
             i -= 1
