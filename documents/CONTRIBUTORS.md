@@ -18,7 +18,6 @@ Creator and "advertiser" of the project
 
     ( ☭ ͜ʖ ☭)
 
-======w=w===
 ```
 
 ```txt
