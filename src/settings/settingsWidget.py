@@ -114,20 +114,31 @@ class Settings(QWidget):
         session_info = new_data["session"]
         management_info = new_data["management"]
         
+        # save values in general section
         camera_id = self.General.cameraSelection.currentText()
         new_data["camera_id"] = 0 if camera_id == "Camera unavailable" else int(camera_id)
         new_data["sheets_url"] = self.General.sheetURLSelection.text()
         new_data["present_marker"] = self.General.presentmarkerSelection.text()
         new_data["qrfilelocation"] = self.QRFile.qrfileSelection.text()
         
+        # save values in info section
         all_members_info["page"] = self.Information.pageSelection.currentText()
         all_members_info["start_row"] = self.Information.startrowCounter.value()
         
+        # save values in management/homework section
         management_info["sheet"] = self.Homework.pageSelection.currentText()
         management_info["start_row"] = self.Homework.startrowCounter.value()
         management_info["name_column"] = self.Homework.identifierSelection.text()
         management_info["research_column"] = self.Homework.researchSelection.text()
         management_info["speech_column"] = self.Homework.speechclauseSelection.text()
+        
+        # save values in session/chairing section
+        selectedRooms = []
+        for index in range(self.Session.pageSelection.count()):
+            if self.Session.pageSelection.item(index).checkState == Qt.Checked:
+                selectedRooms.append(self.Session.pageSelection.item(index).text())
+        if len(selectedRooms) != 0:
+            session_info["rooms"] = selectedRooms
         
         session_info["identifier_column"] = self.Session.identifierSelection.text()
         session_info["register_column"] = self.Session.registerSelection.text()

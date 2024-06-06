@@ -27,7 +27,11 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-from settings.settings import attendance_lookup_col, attendance_register_col, amendment_col, country_col, poi_col, speech_col, sheets, attendance_start
+import pyautogui
+from settings.settings import attendance_lookup_col, attendance_register_col, amendment_col, country_col, poi_col, speech_col, sheets, attendance_start, attendance_rooms
+
+# Constants
+width, height = pyautogui.size()
 
 class SessionSettings(QWidget):
     def __init__(self) -> None:
@@ -41,8 +45,20 @@ class SessionSettings(QWidget):
         
         # page selection box
         self.pageLabel = QLabel("Page")
-        self.pageSelection = QComboBox()
-        self.pageSelection.addItems(sheets)
+        self.pageSelection = QListWidget()
+        for sheetname in sheets:
+            item = QListWidgetItem(sheetname)
+            item.setFlags(Qt.ItemIsUserCheckable | Qt.ItemIsEnabled)
+            
+            # checked some boxes to show the current settings
+            if sheetname in attendance_rooms:
+                item.setCheckState(Qt.Checked)
+            else:
+                item.setCheckState(Qt.Unchecked)
+                
+            self.pageSelection.addItem(item)
+        
+        self.pageSelection.setFixedHeight(height//8)
         
         # start row counter
         self.startrowLabel = QLabel("Start row")
