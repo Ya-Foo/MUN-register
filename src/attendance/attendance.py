@@ -27,7 +27,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-import pyautogui
+import pyautogui, os
 
 # Import utility widgets
 from attendance.qrRead import QRRead
@@ -93,7 +93,7 @@ class Attendance(QWidget):
         # label for wojaks
         self.Wojaks = QLabel()
         self.WojakGeometry = self.FeedLabel.size()
-        self.Wojaks.setPixmap(QPixmap("./images/sacred_wojaks.png").scaled(self.WojakGeometry))
+        self.Wojaks.setPixmap(QPixmap(os.path.abspath("./images/sacred_wojaks.png")).scaled(self.WojakGeometry))
         self.Wojaks.setFixedSize(self.WojakGeometry)
         
         # thread for registration
