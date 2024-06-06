@@ -46,6 +46,8 @@ class MainWindow(QMainWindow):
         self.setGeometry(0, 0, width, height)
         self.setWindowTitle("MUN App")
         self.setWindowIcon(QIcon("./images/logo/black.png"))
+        
+        # global stylings
         self.setStyleSheet("""
             .QComboBox {
                 border: 3px solid transparent;
@@ -115,6 +117,19 @@ class MainWindow(QMainWindow):
                 image: url(./images/icons/arrow-up.ico);
                 width: 0px;
                 height: 0px;
+            }
+            
+            .QListWidget {
+                border: 2px solid #ffffff;
+                border-radius: 10px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                padding-left: 5px;
+                font-size: 12pt;
+                color: #6b6b6b;
+                background: transparent;
             }
         """)
         
