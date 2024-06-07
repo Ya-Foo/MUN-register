@@ -69,7 +69,7 @@ class WikiWidget(QWidget):
         
     def StartSearch(self) -> None:
         try:
-            articleRetrieved = wikipedia.page(self.searchBox.text(), auto_suggest=False, preload=True).content
+            articleRetrieved = wikipedia.page(self.searchBox.text(), auto_suggest=False).content
             self.article.setPlainText(articleRetrieved)
         except:
             self.article.setPlainText("No article found")
