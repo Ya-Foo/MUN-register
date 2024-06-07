@@ -79,17 +79,33 @@ class Settings(QWidget):
         
         # scroll area for left side
         self.LeftScroll = QScrollArea()
+        self.LeftScroll.setStyleSheet("""
+            .QScrollArea {
+                border: 1px solid #6b6b6b;
+                border-top: transparent;
+                border-bottom: transparent;
+                border-left: transparent;
+            }
+            .QScrollBar {width:0px;}
+        """)
         self.LeftScroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.LeftScroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.LeftScroll.setStyleSheet("QScrollBar {width:0px;}")
         self.LeftScroll.setWidgetResizable(True)
         self.LeftScroll.setWidget(self.LeftFrame)
         
         # scroll area for right side
         self.RightScroll = QScrollArea()
+        self.RightScroll.setStyleSheet("""
+            .QScrollArea {
+                border: 1px solid #6b6b6b;
+                border-top: transparent;
+                border-bottom: transparent;
+                border-right: transparent;
+            }
+            QScrollBar {width:0px;}
+        """)
         self.RightScroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.RightScroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.RightScroll.setStyleSheet("QScrollBar {width:0px;}")
         self.RightScroll.setWidgetResizable(True)
         self.RightScroll.setWidget(self.RightFrame)
         
