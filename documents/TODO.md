@@ -11,8 +11,4 @@
 
 ## Feature
 
-- [ ] Add a timer section in Chairing with the functionalities:
-  - [ ] Set the time and start the timer
-  - [ ] Stop the timer
-
 - [ ] Figure out how to compile this into an executable on Windows + macOS for easier installation
