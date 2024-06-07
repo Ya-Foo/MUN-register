@@ -286,13 +286,11 @@ if __name__ == "__main__":
     App = QApplication(sys.argv)
     App.setPalette(palette)
     Root = MainWindow()
-    Root.show()
     App.exec()
     
     endApp = QApplication(sys.argv)
     endApp.setPalette(palette)
     endRoot = ExitWindow()
-    endRoot.show()
     endApp.exec()
     os.system('cls||clear')
     sys.exit()
