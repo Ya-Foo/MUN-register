@@ -57,7 +57,7 @@ class VoteWidget(QWidget):
         """)
         self.setFixedSize(int(width*0.4), height//2)
         self.VBL.setAlignment(Qt.AlignTop)
-        self.setContentsMargins(25, 10, 10, 10)
+        self.setContentsMargins(10, 10, 25, 15)
         
         # vote type frame
         self.majorityFrame = QFrame()

@@ -28,38 +28,73 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5 import QtTest
 
-import time
+import pyautogui
+
+# Constants
+width, height = pyautogui.size()
 
 class TimerWidget(QWidget):
     def __init__(self) -> None:
         super(TimerWidget, self).__init__()
         
         self.HBL = QHBoxLayout()
+        self.setContentsMargins(10, 10, 25, 15)
         
         #https://www.youtube.com/watch?v=E7lhFwcDpMI
         
+        # right frame for timer controls
+        self.RightFrame = QFrame()
+        self.RightFrameLayout = QVBoxLayout()
+        self.RightBottomFrame = QFrame()
+        self.RightBottomFrameLayout = QHBoxLayout()
+        
         # set the timer
         self.timeSet = QLineEdit()
+        self.timeSet.setStyleSheet("""
+            color: #6f6f6f;
+            border: 2px solid white;
+            border-radius: 10;
+            background: transparent;
+            font-size: 32pt;
+        """)
         
-        # start/stop btn
+        # start, stop, clear, reset btn
         self.StartBTN = QPushButton("Start")
         self.StartBTN.clicked.connect(self.start_timer)
-        self.StopBTN = QPushButton("Stop and reset")
+        self.StopBTN = QPushButton("Stop")
         self.StopBTN.clicked.connect(self.stop_timer)
+        self.ResetBTN = QPushButton("Reset")
+        self.ResetBTN.clicked.connect(self.reset_timer)
+        self.ClearBTN = QPushButton("Clear")
+        self.ClearBTN.clicked.connect(self.clear_timer)
+        
+        # add stuff to right frame
+        self.RightBottomFrameLayout.addWidget(self.StartBTN)
+        self.RightBottomFrameLayout.addWidget(self.StopBTN)
+        self.RightBottomFrameLayout.addWidget(self.ResetBTN)
+        self.RightBottomFrameLayout.addWidget(self.ClearBTN)
+        self.RightBottomFrame.setLayout(self.RightBottomFrameLayout)
+        self.RightFrameLayout.addWidget(self.timeSet)
+        self.RightFrameLayout.addWidget(self.RightBottomFrame)
+        self.RightFrame.setLayout(self.RightFrameLayout)
+        self.RightFrame.setFixedWidth(width//3)
+        self.RightFrameLayout.setAlignment(Qt.AlignTop)
         
         # timer thread
         self.TimerThread = Timer()
         self.TimerThread.TimeSignal.connect(self.displayTime)
         
         # display remaining time
-        self.TimeRemaining = QLineEdit("00:00:00")
-        self.TimeRemaining.setReadOnly(True)
+        self.TimeRemaining = QLabel("00:00:00")
+        self.TimeRemaining.setStyleSheet("""
+            color: white;
+            font-size: 112pt;
+        """)
+        self.TimeRemaining.setAlignment(Qt.AlignCenter)
 
         # add everything to layout
         self.HBL.addWidget(self.TimeRemaining)
-        self.HBL.addWidget(self.timeSet)
-        self.HBL.addWidget(self.StartBTN)
-        self.HBL.addWidget(self.StopBTN)
+        self.HBL.addWidget(self.RightFrame)
         self.setLayout(self.HBL)
     
     def start_timer(self) -> None:
@@ -76,12 +111,16 @@ class TimerWidget(QWidget):
             elif len(self.timeEntry) == 1:
                 seconds = int(self.timeEntry[0])
             else:
-                self.TimeRemaining.setText("Invalid time format")
                 return
         except ValueError:
-            self.TimeRemaining.setText("Invalid time format")
             return
         
+        minutes += seconds // 60
+        seconds %= 60
+        hours += minutes // 60
+        minutes %= 60
+        if hours > 24:
+            return
         self.TimerThread.run(hours, minutes, seconds)
         
     def displayTime(self, time: str):
@@ -89,28 +128,39 @@ class TimerWidget(QWidget):
         
     def stop_timer(self):
         self.TimerThread.stop()
+        
+    def reset_timer(self):
+        self.TimeRemaining.setText(self.TimerThread.history)
+        self.timeSet.setText(self.TimerThread.history)
+        self.TimerThread.stop()
+        
+    def clear_timer(self):
+        self.TimerThread.stop()
+        self.TimeRemaining.setText("00:00:00")
+        self.timeSet.setText("")
 
 class Timer(QThread):
     # Initialise thread's signal
     TimeSignal = pyqtSignal(str)
+    
+    def __init__(self) -> None:
+        super(Timer, self).__init__()
+        self.totalSeconds = 0
+        self.history = "00:00:00"
         
     def run(self, hours: int, minutes: int, seconds: int) -> None:
         self.stopTimer = False
-        totalSeconds = (hours*3600) + (minutes * 60) + seconds
-        while totalSeconds > 0 and not self.stopTimer:
-            minutes, seconds = divmod(totalSeconds, 60)
+        self.history = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+        self.totalSeconds = (hours*3600) + (minutes * 60) + seconds
+        while self.totalSeconds > 0 and not self.stopTimer:
+            minutes, seconds = divmod(self.totalSeconds, 60)
             hours, minutes = divmod(minutes, 60)
             
             formated_time = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
             self.TimeSignal.emit(formated_time)
             
             QtTest.QTest.qWait(1000)
-            totalSeconds -= 1
-            
-        if not self.stopTimer:
-            self.TimeSignal.emit("Time's up!")
-        else:
-            self.TimeSignal.emit("00:00:00")
+            self.totalSeconds -= 1
         self.quit()
             
     def stop(self) -> None:
