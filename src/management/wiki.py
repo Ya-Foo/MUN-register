@@ -51,11 +51,12 @@ class WikiWidget(QWidget):
         self.article.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.article.setStyleSheet("""
         .QPlainTextEdit {
-            border: 1px solid white;
+            border: 2px solid white;
             background: transparent;
             font-size: 12pt;
             color: #8b8b8b;
             border-radius: 10px;
+            margin-top: 10px;
         }
         """)
         
@@ -68,7 +69,7 @@ class WikiWidget(QWidget):
         
     def StartSearch(self) -> None:
         try:
-            articleRetrieved = wikipedia.page(self.searchBox.text(), auto_suggest=False).content
+            articleRetrieved = wikipedia.page(self.searchBox.text(), auto_suggest=False, preload=True).content
             self.article.setPlainText(articleRetrieved)
         except:
             self.article.setPlainText("No article found")
