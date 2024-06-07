@@ -37,6 +37,13 @@ class Managing(QWidget):
         super(Managing, self).__init__()
         
         self.HBL = QHBoxLayout()
+        self.setStyleSheet("""
+            .QLabel {
+                font-size: 12pt;
+                color: white;
+                padding-top: 35px;
+            }
+        """)
         
         # left frame (qr create and research)
         self.LeftFrame = QFrame()
@@ -53,10 +60,6 @@ class Managing(QWidget):
         
         # right frame (wikipedia)
         self.RightFrame = WikiWidget()
-        self.RightFrameLayout = QVBoxLayout()
-        
-        # add stuff into right frame
-        self.RightFrame.setLayout(self.RightFrameLayout)
         
         # add two frames inside main HBL
         self.HBL.addWidget(self.LeftFrame)

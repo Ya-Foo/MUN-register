@@ -41,13 +41,6 @@ class HomeworkWidget(QWidget):
         super(HomeworkWidget, self).__init__()
         
         self.VBL = QVBoxLayout()
-        self.setStyleSheet("""
-            .QLabel {
-                font-size: 12pt;
-                color: white;
-                padding-top: 35px;
-            }
-        """)
         self.setFixedWidth(int(width*0.4))
         self.setContentsMargins(10, 10, 25, 10)
         self.VBL.setAlignment(Qt.AlignTop)

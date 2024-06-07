@@ -27,6 +27,49 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
+import wikipedia
+
 class WikiWidget(QWidget):
     def __init__(self) -> None:
         super(WikiWidget, self).__init__()
+        
+        self.VBL = QVBoxLayout()
+        self.setContentsMargins(10, 10, 25, 15)
+        self.VBL.setAlignment(Qt.AlignTop)
+        
+        # search box
+        self.searchBoxLabel = QLabel("Search Wikipedia")
+        self.searchBox = QLineEdit()
+        
+        # search for article button
+        self.searchBTN = QPushButton("Search")
+        self.searchBTN.clicked.connect(self.StartSearch)
+        
+        # showing the plaintext article
+        self.article = QPlainTextEdit()
+        self.article.setReadOnly(True)
+        self.article.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.article.setStyleSheet("""
+        .QPlainTextEdit {
+            border: 1px solid white;
+            background: transparent;
+            font-size: 12pt;
+            color: #8b8b8b;
+            border-radius: 10px;
+        }
+        """)
+        
+        # add everything to layout
+        self.VBL.addWidget(self.searchBoxLabel)
+        self.VBL.addWidget(self.searchBox)
+        self.VBL.addWidget(self.searchBTN)
+        self.VBL.addWidget(self.article)
+        self.setLayout(self.VBL)
+        
+    def StartSearch(self) -> None:
+        try:
+            articleRetrieved = wikipedia.page(self.searchBox.text(), auto_suggest=False).content
+            self.article.setPlainText(articleRetrieved)
+        except:
+            self.article.setPlainText("No article found")
+        
