@@ -27,14 +27,14 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-import json
+import json, os
 
 class ExitWindow(QWidget):
     def __init__(self) -> None:
         super(ExitWindow, self).__init__()
         
         self.setWindowTitle("Exit session")
-        self.setWindowIcon(QIcon("./images/logo/black.png"))
+        self.setWindowIcon(QIcon(os.path.abspath("./images/logo/black.png")))
         
         self.VBL = QVBoxLayout()
         self.VBL.setContentsMargins(50, 50, 50, 50)
@@ -90,7 +90,7 @@ class ExitWindow(QWidget):
         self.show()
         
     def yes(self) -> None:
-        with open("src/settings/config.json", 'r') as f:
+        with open(os.path.abspath("src/settings/config.json"), 'r') as f:
             data = json.loads(f.read())
             session_info = data["session"]
             session_info["register_column"] = increaseCol(session_info["register_column"])
@@ -98,7 +98,7 @@ class ExitWindow(QWidget):
             session_info["speech_column"] = increaseCol(session_info["speech_column"])
             session_info["poi_column"] = increaseCol(session_info["poi_column"])
         
-        with open("src/settings/config.json", 'w') as f:
+        with open(os.path.abspath("src/settings/config.json"), 'w') as f:
             f.write(json.dumps(data, indent=4))
         self.close()
     

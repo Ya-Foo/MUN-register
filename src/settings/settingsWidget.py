@@ -27,7 +27,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-import json, sys
+import json, sys, os
 from settings.settings import data
 
 # import all setting groups
@@ -165,7 +165,7 @@ class Settings(QWidget):
         session_info["poi_column"] = self.Session.poiSelection.text()
         
         # write these new values into file
-        with open("src/settings/config.json", 'w') as f:
+        with open(os.path.abspath("src/settings/config.json"), 'w') as f:
             json.dump(new_data, f, indent=4)
             
         sys.exit()

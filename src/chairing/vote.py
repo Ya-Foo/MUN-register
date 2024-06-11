@@ -103,17 +103,17 @@ class VoteWidget(QWidget):
         # for, abstain, against btn
         self.ForBTNPlus = QPushButton("+")
         self.ForBTNPlus.clicked.connect(self.incrementVoteFor)
-        self.ForBTNMinus = QPushButton("−")
+        self.ForBTNMinus = QPushButton("-")
         self.ForBTNMinus.clicked.connect(self.decrementVoteFor)
         
         self.AbstainBTNPlus = QPushButton("+")
         self.AbstainBTNPlus.clicked.connect(self.incrementVoteAbstain)
-        self.AbstainBTNMinus = QPushButton("−")
+        self.AbstainBTNMinus = QPushButton("-")
         self.AbstainBTNMinus.clicked.connect(self.decrementVoteAbstain)
         
         self.AgainstBTNPlus = QPushButton("+")
         self.AgainstBTNPlus.clicked.connect(self.incrementVoteAgainst)
-        self.AgainstBTNMinus = QPushButton("−")
+        self.AgainstBTNMinus = QPushButton("-")
         self.AgainstBTNMinus.clicked.connect(self.decrementVoteAgainst)
         
         # vote count labels

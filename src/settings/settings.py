@@ -22,13 +22,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-import json, re
+import json, re, os
 
 import api
 
 import googleapiclient.discovery
 
-with open("src/settings/config.json", 'r') as f:
+with open(os.path.abspath("src/settings/config.json"), 'r') as f:
     creds = api.auth()
     data = json.loads(f.read())
     

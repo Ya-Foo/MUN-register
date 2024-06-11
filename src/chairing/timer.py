@@ -40,8 +40,6 @@ class TimerWidget(QWidget):
         self.HBL = QHBoxLayout()
         self.setContentsMargins(10, 10, 25, 15)
         
-        #https://www.youtube.com/watch?v=E7lhFwcDpMI
-        
         # right frame for timer controls
         self.RightFrame = QFrame()
         self.RightFrameLayout = QVBoxLayout()
