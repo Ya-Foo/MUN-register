@@ -1,0 +1,23 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="icons">
+        <file alias="arrow-down.ico">../images/icons/arrow-down.ico</file>
+        <file alias="arrow-up.ico">../images/icons/arrow-up.ico</file>
+        <file alias="checked-user.ico">../images/icons/checked-user.ico</file>
+        <file alias="checked-user-selected.ico">../images/icons/checked-user-selected.ico</file>
+        <file alias="gavel.ico">../images/icons/gavel.ico</file>
+        <file alias="gavel-selected.ico">../images/icons/gavel-selected.ico</file>
+        <file alias="edit.ico">../images/icons/edit.ico</file>
+        <file alias="edit-selected.ico">../images/icons/edit-selected.ico</file>
+        <file alias="gear.ico">../images/icons/gear.ico</file>
+        <file alias="gear-selected.ico">../images/icons/gear-selected.ico</file>
+    </qresource>
+    <qresource prefix="logos">
+        <file alias="white.png">../images/logo/white.png</file>
+        <file alias="black.png">../images/logo/black.png</file>
+        <file alias="blue.png">../images/logo/blue.png</file>
+    </qresource>
+    <qresource prefix="meme">
+        <file alias="wojak.png">../images/sacred_wojaks.png</file>
+    </qresource>
+</RCC>
