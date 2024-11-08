@@ -46,7 +46,7 @@ with open(os.path.abspath("src/settings/config.json"), 'r') as f:
     all_members_info = data["info"]
     all_members_page = all_members_info["page"]
     all_members_start = all_members_info["start_row"]
-    all_members_cell = f"'{all_members_page}'!A{str(all_members_start)}:D1000"
+    all_members_cell = f"'{all_members_page}'!A{all_members_start}:D1000"
     all_members = {}
     for identifier, name, _, room in api.get_values(creds, sheets_id, all_members_cell):
         all_members[identifier.rstrip()] = [name.rstrip(), f"Room {room}"]
