@@ -13,10 +13,10 @@
         ],
         "identifier_column": "A",
         "country_column": "C",
-        "register_column": "T",
-        "speech_column": "U",
-        "amendment_column": "V",
-        "poi_column": "W",
+        "register_column": "AB",
+        "speech_column": "AC",
+        "amendment_column": "AD",
+        "poi_column": "AE",
         "start_row": 3
     },
     "management": {

@@ -16,10 +16,10 @@ For chairs wishing to install this app, refer to this [user guide](documents/USE
 
 ![BISMUN logo](<documents/img/BISMUN logo.png>)
 
-A program made for the BISHCMC MUN club.
+A program made for the BISMUN club.
 
-Idea proposal: Henry Bui @Heinz-Bui  
-Head developer: Gia Phu Huynh @Ya-Foo or @Ya-Hoo  
+Co-Founder: Henry Bui @Heinz-Bui  
+Co-Founder and Head Developer: Gia Phu Huynh @Ya-Foo or @Ya-Hoo  
 Contributors: see [here](documents/CONTRIBUTORS.md)
 
 > [!WARNING]
