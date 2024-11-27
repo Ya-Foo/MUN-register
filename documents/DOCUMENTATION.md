@@ -99,7 +99,7 @@ Alternatively, you can create your own credentials using the guidelines from Goo
 ### 1.3. Testing environment
 
 1. Navigate to `config.json`
-2. Visit this [spreadsheet](https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=0), which have been formatted exactly like the spreadsheet used by chairs.
+2. Visit this [spreadsheet](https://docs.google.com/spreadsheets/d/1fgrlm8lPfSFXuq17Ij0asIJcg5NfvA4OEs33LzYFn78/edit?gid=0#gid=0), which have been formatted exactly like the spreadsheet used by chairs.
 3. Paste the URL of the sheet into the key `sheets_url`'s value.
 4. Change `register_column`, `speech_column`, `amendment_column`, and `poi_column` value to G, H, I, J, respectively.
 5. Save the file, and run the app.
