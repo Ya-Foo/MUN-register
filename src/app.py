@@ -229,7 +229,7 @@ class MainWindow(QMainWindow):
         self.copyrightFrameLayout = QFormLayout()
         self.logoLabel = QLabel()
         self.logoLabel.setPixmap(QPixmap(os.path.abspath("./images/logo/white.png")).scaledToWidth(width//25))
-        self.copyrightFrameLayout.addRow(self.logoLabel, QLabel("MIT License. Copyright (c) 2024\n\nGia Phu Huynh and Quang Hien Bui"))
+        self.copyrightFrameLayout.addRow(self.logoLabel, QLabel("MIT License. Copyright (c) 2024\n\nQuang Hien Bui"))
         self.copyrightFrameLayout.setFormAlignment(Qt.AlignBottom)
         self.copyrightFrameLayout.setHorizontalSpacing(25)
         self.copyrightFrame.setLayout(self.copyrightFrameLayout)
